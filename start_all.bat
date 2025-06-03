@@ -7,6 +7,7 @@ if errorlevel 1 (
   echo Frontend folder not found!
   pause
   exit /b 1
+  
 )
 docker-compose up -d
 
