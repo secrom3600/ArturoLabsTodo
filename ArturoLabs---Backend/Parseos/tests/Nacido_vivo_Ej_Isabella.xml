@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="CDA_MSP.xsl"?>
+<SignedClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:salud.uy/2014/signed-clinical-document signed-clinical-documentV2_5.xsd" xmlns="urn:salud.uy/2014/signed-clinical-document">
+	<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+		<typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+		<templateId root="ClinicalDocument_templateId_root"/>
+		<id root="2.16.858.2.10002661.67430.20240405042248.1716134.2"/>
+		<code code="51851-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Documentación administrativa"/>
+		<title>Datos del certificado de nacido vivo</title>
+		<effectiveTime value="20240405042205"/>
+		<confidentialityCode code="N"/>
+		<languageCode code="es-UY"/>
+		<setId root="2.16.858.2.10002661.67430.20240405042248.1716134.2"/>
+		<versionNumber value="1"/>
+		<recordTarget>
+			<patientRole>
+				<id extension="4334343435" root="2.16.858.2.10000675.68909"/>
+				<addr>
+					<streetAddressLine>Ejido</streetAddressLine>
+					<city>Montevideo</city>
+					<state>Centro</state>
+					<postalCode>11100</postalCode>
+					<country nullFlavor="UNK"/>
+				</addr>
+				<patient>
+					<name>
+						<given>Isabella</given>
+						
+						<family>Ruiz</family>
+						<family>Álvarez</family>
+					</name>
+					<administrativeGenderCode code="2" codeSystem="2.16.858.2.10000675.69600" displayName="Masculino"/>
+					<birthTime value="20230915"/>
+					<birthplace>
+						<place>
+							<addr>
+								<city>Montevideo</city>
+								<state/>
+								<country nullFlavor="">URUGUAY</country>
+							</addr>
+						</place>
+					</birthplace>
+				</patient>
+			</patientRole>
+		</recordTarget>
+		<author>
+			<time value="20240405000005"/>
+			<assignedAuthor>
+				<id extension="43434343" root="2.16.858.2.10000675.68909"/>
+				<assignedPerson>
+					<name>
+						<suffix/>
+						<given>Claudia</given>
+						<given>-</given>
+						<family>Antunez</family>
+						<family>Irutia</family>
+					</name>
+				</assignedPerson>
+				<representedOrganization>
+					<id root="2.16.858.0.0.0.1.1.5"/>
+					<name>Ministerio de Salud Pública</name>
+				</representedOrganization>
+			</assignedAuthor>
+		</author>
+		<custodian>
+			<assignedCustodian>
+				<representedCustodianOrganization>
+					<id root="2.16.858.0.0.0.1.1.5"/>
+					<name>Ministerio de Salud Pública</name>
+				</representedCustodianOrganization>
+			</assignedCustodian>
+		</custodian>
+		<componentOf>
+			<encompassingEncounter classCode="ENC">
+				<code code="221331000179102" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT es-UY" displayName="Datos del certificado de nacido vivo"/>
+				<effectiveTime>
+					<low value="20230904000005"/>
+					<high value="20230904001005"/>
+				</effectiveTime>
+				<location typeCode="LOC">
+					<healthCareFacility classCode="SDLOC">
+						<code code="227541000179105" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT es-UY" displayName="Servicio de administración sanitaria"/>
+					</healthCareFacility>
+				</location>
+			</encompassingEncounter>
+		</componentOf>
+		<component>
+			<structuredBody>
+				<component>
+					<section>
+						<code code="220451000179105" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="EMBARAZO"/>
+						<title>EMBARAZO</title>
+						<component>
+							<section>
+								<code code="220461000179108" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="DATOS MÉDICOS DEL EMBARAZO"/>
+								<title>DATOS MÉDICOS DEL EMBARAZO</title>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="230571000179103" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Tipo de embarazo"/>
+										<value code="1" codeSystem="2.16.858.2.1002661.73262.2.6" codeSystemName="Catálogo MSP" displayName="Simple" xsi:type="CD"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="230581000179101" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Multiplicidad del embarazo"/>
+										<value value="1" xsi:type="INT"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="3401000175105" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Total de consultas prenatales"/>
+										<value value="10" xsi:type="INT"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="230591000179104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Serología para VIH"/>
+										<value value="SI" xsi:type="BL"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="169698000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Estudio sífilis realizado durante el embarazo(VDRL/RPR) test rápido u otro"/>
+										<value value="SI" xsi:type="BL"/>
+									</observation>
+								</entry>
+							</section>
+						</component>
+					</section>
+				</component>
+				<component>
+					<section>
+						<code code="220471000179102" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="PARTO"/>
+						<title>PARTO</title>
+						<component>
+							<section>
+								<code code="220491000179103" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="DATOS DEL LUGAR DONDE OCURRIÓ EL PARTO"/>
+								<title>DATOS DEL LUGAR DONDE OCURRIÓ EL PARTO</title>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="169812000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Lugar donde ocurrió el parto"/>
+										<value code="1" codeSystem="2.16.858.2.1002661.73262.2.1" codeSystemName="Catálogo MSP" displayName="Asociacion Española" xsi:type="CD"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="230601000179109" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Centro asistencial"/>
+										<value code="2.16.858.0.2.16.86.1.0.0.130046930015" codeSystem="2.16.858.2.1002661.73262.2.2" codeSystemName="Catálogo MSP" displayName="CENTRO AUX. Montevideo" xsi:type="CD"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="230611000179106" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="A cargo de quién estuvo la atención del parto"/>
+										<value code="24" codeSystem="2.16.858.2.1002661.73262.2.3" codeSystemName="Catálogo MSP" displayName="PARTERA" xsi:type="CD"> </value>
+									</observation>
+								</entry>
+							</section>
+						</component>
+						<component>
+							<section>
+								<code code="220501000179108" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="DATOS DEL PARTO"/>
+								<title>DATOS DEL PARTO</title>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="232211000179105" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Fecha del parto"/>
+										<value value="20230915" xsi:type="TS"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="230631000179104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Hora del parto"/>
+										<value value="20230915152000" xsi:type="TS"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="230621000179101" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Tipo de parto"/>
+										<value code="0" codeSystem="2.16.858.2.1002661.73262.2.4" codeSystemName="Codiguera MSP" displayName="VAGINAL" xsi:type="CD"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="302383004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Forceps"/>
+										<value code="0" codeSystem="2.16.858.2.1002661.73262.2.5" codeSystemName="CodigueraMSP" displayName="NO" xsi:type="CD"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="61586001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Vacuum"/>
+										<value code="0" codeSystem="2.16.858.2.1002661.73262.2.5" codeSystemName="CodigueraMSP" displayName="NO" xsi:type="CD"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="232921000179105" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Otras maniobras manuales o instrumentales"/>
+										<value code="0" codeSystem="2.16.858.2.1002661.73262.2.5" codeSystemName="CodigueraMSP" displayName="NO" xsi:type="CD"/>
+									</observation>
+								</entry>
+							</section>
+						</component>
+						<component>
+							<section>
+								<code code="220511000179105" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="DATOS DEL RECIÉN NACIDO"/>
+								<title>DATOS DEL RECIÉN NACIDO</title>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="364589006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Peso al nacer"/>
+										<value unit="g" value="4500" xsi:type="PQ"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="412726003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Semanas de gestación"/>
+										<value unit="wk" value="40" xsi:type="PQ"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="169895004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="APGAR 1"/>
+										<value value="8" xsi:type="INT"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="169909004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="APGAR 2"/>
+										<value value="9" xsi:type="INT"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="230651000179105" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Corresponde a embarazo múltiple"/>
+										<value value="NO" xsi:type="BL"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="230581000179101" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Multiplicidad del embarazo"/>
+										<value value="1" xsi:type="INT"/>
+									</observation>
+								</entry>
+								<entry>
+									<observation classCode="OBS" moodCode="EVN">
+										<code code="722250005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Orden del recién nacido en un embarazo múltiple"/>
+										<value value="0" xsi:type="INT"/>
+									</observation>
+								</entry>
+							</section>
+						</component>
+					</section>
+				</component>
+				<component>
+					<section>
+						<code code="86468-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Report comment section"/>
+						<text>Este documento no es un certificado oficial.</text>
+					</section>
+				</component>
+			</structuredBody>
+		</component>
+	</ClinicalDocument>
+	<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+		<SignedInfo>
+			<CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+			<SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
+			<Reference URI="">
+				<Transforms>
+					<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+				</Transforms>
+				<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/>
+				<DigestValue>xhJ70/SjBTG1+xkVt50lBGfmd2KVfPmKZKT7+MtXM8rEOwf1KEga0qaY35SpbrUegqyQ7FfVg86I
+gfStzkdIKA==</DigestValue>
+			</Reference>
+		</SignedInfo>
+		<SignatureValue>FrYl/0Jafh7Vb+Qmq0yi49m4VJ5EWqBhegdFd8dIjnS03Z2yD6q1WHkK6OdEVBHj5bf0UZsFoMrY
+QF9kE1c/uahi2zRXuiEuDGWoq1HYwSo34WbXd3lU+MJJ6PhfH5Yr9DVwmsZKC77JUs56mUS7fcir
+FM7F7paCkShGXKYfbFm55ThujDlfFJtl1r/dcB/cePeMBcCIvNmCDtm2qBFyrTEu5fQwaxJmSfxD
+7qFFR8Ros0osSF1+rMqK3S/jgvqwxSFSE1YNts/i7wstqAnAPl3PUenGKOMsW64+usmlRndD4P11
+opnHP7XiZ84ZW9zo0t4YSB42XY7eJ/VkdwQW4Q==</SignatureValue>
+	</Signature>
+</SignedClinicalDocument>

@@ -1,0 +1,27 @@
+
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+  web:
+    build: .
+    command: bash -c "
+      echo 'Waiting for PostgreSQL...';
+      until pg_isready -h db -U $POSTGRES_USER; do sleep 1; done;
+      echo 'PostgreSQL is up!';
+      python manage.py migrate;
+      PGPASSWORD=$POSTGRES_PASSWORD psql -h db -U $POSTGRES_USER -d $POSTGRES_DB -f data.sql;
+      python manage.py runserver 0.0.0.0:8000
+      "
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env

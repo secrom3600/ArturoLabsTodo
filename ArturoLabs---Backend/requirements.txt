@@ -1,0 +1,15 @@
+Django>=4.1,<4.2
+psycopg2-binary>=2.9,<3.0
+django-environ>=0.7,<1.0
+djangorestframework
+django-cors-headers
+django-allauth 
+dj-rest-auth[with_social] 
+google-auth 
+google-api-python-client 
+requests
+lxml
+json
+
+
+

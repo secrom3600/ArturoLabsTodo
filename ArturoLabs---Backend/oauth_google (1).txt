@@ -1,0 +1,233 @@
+# 1. Instalar las dependencias necesarias:
+# pip install djangorestframework django-allauth dj-rest-auth[with_social] google-auth google-api-python-client requests django-cors-headers
+
+# 2. Configurar settings.py
+# settings.py
+
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# ... otras configuraciones de Django ...
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    # Required for allauth
+    'django.contrib.sites',
+
+    # DRF and dj-rest-auth
+    'rest_framework',
+    'rest_framework.authtoken', # Or 'rest_framework_simplejwt' if using JWT
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    # allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # Google social provider
+    'allauth.socialaccount.providers.google',
+
+    # CORS headers (important for frontend/backend communication)
+    'corsheaders',
+
+    # ... your other apps
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # CORS middleware
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Add the account middleware:
+    'allauth.account.middleware.AccountMiddleware',
+]
+
+ROOT_URLCONF = 'your_project.urls' # Replace 'your_project' with your project name
+
+TEMPLATES = [
+    {
+        # ... template settings ...
+    },
+]
+
+WSGI_APPLICATION = 'your_project.wsgi.application' # Replace 'your_project'
+
+# Database
+# ... database settings ...
+
+# Password validation
+# ... password validation settings ...
+
+# Internationalization
+# ... i18n settings ...
+
+# Static files (CSS, JavaScript, Images)
+# ... static files settings ...
+
+# --- allauth settings ---
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1 # Required for allauth
+
+# Optional: allauth account settings (adjust as needed)
+# ACCOUNT_EMAIL_VERIFICATION = "none"
+# ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_UNIQUE_EMAIL = True
+
+# --- dj-rest-auth settings ---
+REST_AUTH = {
+    'USE_JWT': False, # Set to True if you prefer JWT
+    'TOKEN_MODEL': 'rest_framework.authtoken.models.Token', # Default using DRF's Token
+    'SOCIALACCOUNT_ADAPTER': 'dj_rest_auth.registration.adapters.SocialAccountAdapter',
+    # If using JWT:
+    # 'JWT_AUTH_COOKIE': 'my-app-auth',
+    # 'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+}
+
+# If using JWT, you might need these settings for Simple JWT
+# from datetime import timedelta
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+#     # ... other JWT settings ...
+# }
+
+
+# --- allauth social providers settings ---
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            # !!! IMPORTANT: Replace with your actual Google Client ID and Secret !!!
+            'client_id': 'TU_CLIENT_ID_DE_GOOGLE',
+            'secret': 'TU_CLIENT_SECRET_DE_GOOGLE',
+            'key': ''
+        },
+        # Requesting profile and email scope
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        # Optional: Specify a specific hosted domain (e.g., 'mycollege.edu')
+        # 'HOSTED_DOMAIN': 'mycollege.edu',
+    }
+}
+
+# --- CORS settings ---
+# !!! IMPORTANT: Replace with the actual origin(s) of your React frontend !!!
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", # Example for React development server
+    # "https://your-production-react-app.com", # Example for production
+]
+# Or use CORS_ALLOW_ALL_ORIGINS = True for development (less secure)
+# CORS_ALLOW_ALL_ORIGINS = True
+
+
+# --- DRF settings (optional, but good practice) ---
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication', # Or 'rest_framework_simplejwt.authentication.JWTAuthentication'
+        # 'rest_framework.authentication.SessionAuthentication', # Optional, if using sessions
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated', # Protect APIs by default
+    ]
+}
+
+
+# --- Redirect URLs (can be handled by frontend, but needed for allauth config) ---
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True # Allows logout via GET request (simple for testing)
+
+
+# ... other settings ...
+
+
+# 3. Configurar urls.py
+# urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+
+    # Optional: DRF login/logout views for browsable API
+    # path('api-auth/', include('rest_framework.urls')),
+
+    # dj-rest-auth core urls (login, logout, user details, etc.)
+    path('api/auth/', include('dj_rest_auth.urls')),
+
+    # dj-rest-auth registration urls (if you need email/password registration too)
+    # path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+
+    # !!! This is the key endpoint for social authentication !!!
+    # dj-rest-auth social account urls - handles the callback from Google
+    # The frontend will POST the Google ID token to 'api/auth/google/'
+    path('api/auth/google/', include('dj_rest_auth.social_accounts.urls')),
+
+
+    # allauth urls (needed for the social account callback flow)
+    # The callback URL configured in Google Cloud Console will point here
+    # e.g., http://localhost:8000/accounts/google/login/callback/
+    # You might need to adjust this based on your dj-rest-auth setup,
+    # but dj-rest-auth.social_accounts.urls should handle the API part.
+    # If you encounter issues, ensure the callback URL in Google Cloud Console
+    # matches the one expected by allauth/dj-rest-auth.
+    # path('accounts/', include('allauth.urls')), # Keep this if you need the allauth views/callbacks
+
+
+    # ... your other app urls ...
+]
+
+
+# 4. Ejecutar migraciones
+# python manage.py migrate
+
+# 5. Obtener credenciales de Google API:
+#    - Ve a Google Cloud Console -> APIs & Services -> Credentials.
+#    - Crea un "OAuth client ID" de tipo "Web application".
+#    - En "Authorized JavaScript origins", añade la URL de tu frontend React (ej: http://localhost:3000).
+#    - En "Authorized redirect URIs", añade la URL de callback de allauth/dj-rest-auth.
+#      Common callback URL: http://localhost:8000/accounts/google/login/callback/
+#      Verify the exact URL required by dj-rest-auth and allauth in their documentation.
+#      Sometimes it's handled internally by the API endpoint you POST to.
+#    - Obtén el Client ID y Client Secret. Sustitúyelos en settings.py.
+
+# 6. Añadir la aplicación social de Google en el Admin de Django:
+#    - Inicia el servidor: python manage.py runserver
+#    - Ve a /admin/ -> Social accounts -> Social applications -> Add social application.
+#    - Selecciona 'Google', ingresa el Client ID y Secret, y selecciona tu sitio.
+
+# 7. Implementación en el Frontend (React):
+#    - Usa la biblioteca Google Identity Services (GIS) en tu componente React.
+#    - Configura GIS con tu Client ID de Google.
+#    - Cuando Google devuelve el ID Token, haz una petición POST a tu endpoint Django:
+#      POST /api/auth/google/
+#      Body: { "access_token": "EL_ID_TOKEN_RECIBIDO_DE_GOOGLE" }
+#    - Tu backend validará el token y devolverá un token de tu API (en la clave 'key' si usas TokenModel).
+#    - Almacena este token de tu API en el frontend y úsalo para autenticar futuras peticiones.
+

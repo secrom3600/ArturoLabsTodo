@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Historia Clínica del Niño</title>
+</head>
+<body>
+  <form method="post">
+    {% csrf_token %}
+    <h2>Datos del paciente</h2>
+    <label>Nombre:</label>
+    <input type="text" name="nombre"><br>
+    <label>Apellido:</label>
+    <input type="text" name="apellido"><br>
+    <label>Sexo:</label>
+    <select name="sexo">
+      <option value="1">Masculino</option>
+      <option value="2">Femenino</option>
+    </select><br>
+    <label>Fecha de nacimiento:</label>
+    <input type="date" name="fecha_nacimiento"><br>
+
+    <h2>Motivo de consulta</h2>
+    <input type="text" name="motivo_consulta"><br>
+
+    <h2>Consulta actual</h2>
+    <textarea name="consulta_actual"></textarea><br>
+
+    <h2>Diagnóstico</h2>
+    <label>Descripción:</label>
+    <input type="text" name="diagnostico"><br>
+    <label>Tipo:</label>
+    <input type="text" name="tipo_diagnostico"><br>
+    <label>Es problema:</label>
+    <select name="es_problema">
+      <option value="Sí">Sí</option>
+      <option value="No">No</option>
+    </select><br>
+    <label>Es alerta:</label>
+    <select name="es_alerta">
+      <option value="Sí">Sí</option>
+      <option value="No">No</option>
+    </select><br>
+    <label>Estado del problema:</label>
+    <input type="text" name="estado_problema"><br>
+    <label>Grado de certeza:</label>
+    <input type="text" name="grado_certeza"><br>
+
+    <h2>Ficha de desarrollo - 8 meses</h2>
+    <h3>Área motora</h3>
+    <label>Mantiene erguida y firme la cabeza:</label><input type="text" name="mantiene_cabeza"><br>
+    <label>Eleva el tronco y la cabeza apoyándose en las manos (palanca):</label><input type="text" name="palanca"><br>
+    <label>Se mantiene sentado con apoyo:</label><input type="text" name="sentado_apoyo"><br>
+    <label>Sentado alcanza un objeto:</label><input type="text" name="alcanza_objeto"><br>
+    <label>Se traslada solo:</label><input type="text" name="se_traslada"><br>
+
+    <h3>Área coordinación</h3>
+    <label>Juega con las manos:</label><input type="text" name="juega_manos"><br>
+    <label>Prensión de un objeto:</label><input type="text" name="prension"><br>
+    <label>Prensión global:</label><input type="text" name="prension_global"><br>
+    <label>Pinza inferior:</label><input type="text" name="pinza_inferior"><br>
+
+    <h3>Área lenguaje</h3>
+    <label>Reacciona al estímulo sonoro:</label><input type="text" name="estimulo_sonoro"><br>
+    <label>Emite sonidos:</label><input type="text" name="emite_sonidos"><br>
+    <label>Vuelve la cabeza a la persona que le habla:</label><input type="text" name="gira_cabeza"><br>
+    <label>Combina consonantes con vocales:</label><input type="text" name="consonantes"><br>
+    <label>Responde al "no":</label><input type="text" name="responde_no"><br>
+    <label>Mira objetos/personas señalados:</label><input type="text" name="mira_objetos"><br>
+    <label>Responde a su nombre:</label><input type="text" name="responde_nombre"><br>
+
+    <h3>Área social</h3>
+    <label>Reacción frente al espejo:</label><input type="text" name="espejo"><br>
+    <label>Juego "está - no está":</label><input type="text" name="juego_estanoesta"><br>
+    <label>Anticipación de rutinas cotidianas:</label><input type="text" name="anticipa_rutinas"><br>
+    <label>Distingue personas conocidas:</label><input type="text" name="distingue_personas"><br>
+    <label>Encuentra objetos ocultos:</label><input type="text" name="encuentra_objetos"><br>
+    <label>Juegos interactivos con el adulto:</label><input type="text" name="juego_adulto"><br>
+
+    <h3>Otros controles</h3>
+    <label>Elementos de organicidad:</label><input type="text" name="organicidad"><br>
+    <label>Presencia de signos de alerta:</label><input type="text" name="signos_alerta"><br>
+    <label>Retrocesos o pérdida de logros:</label><input type="text" name="retrocesos"><br>
+
+    <h3>Conductas y resultado</h3>
+    <label>Área motora:</label><input type="text" name="pasa_motor"><br>
+    <label>Área coordinación:</label><input type="text" name="pasa_coordinacion"><br>
+    <label>Área lenguaje:</label><input type="text" name="pasa_lenguaje"><br>
+    <label>Área social:</label><input type="text" name="pasa_social"><br>
+    <label>Resultado conductas:</label><input type="text" name="resultado_conductas"><br>
+    <label>Flujograma:</label><input type="text" name="flujograma"><br>
+
+    <label>Observaciones:</label><br>
+    <textarea name="observaciones"></textarea><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+</body>
+</html>

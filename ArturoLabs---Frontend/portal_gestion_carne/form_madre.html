@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Datos Madre - Portal MSP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Segoe+UI:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(to bottom, #EAF6FB 0%, #FFFFFF 100%);
+    color: #333;
+    font-size: 16px;
+  }
+
+  .header-portal {
+    background-color: #047B97;
+    color: white;
+    padding: 12px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1000;
+  }
+  .header-left-section { display: flex; align-items: center; }
+  .header-left-section .logo-msp {
+    height: 70px;
+    margin-right: 12px;
+  }
+  .header-left-section .site-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.95em;
+    line-height: 1.2;
+    margin: 0;
+    text-align: left;
+  }
+  .header-right-section { display: flex; align-items: center; position: relative; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    z-index: 1100;
+  }
+  .hamburger .bar {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+  }
+
+  .main-nav-links { display: flex; gap: 15px; }
+  .main-nav-links a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    font-size: 0.95em;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .main-nav-links a:hover { background-color: rgba(255,255,255,0.15); }
+
+  .user-menu { position: relative; margin-left: 25px; }
+  .user-icon {
+    background-color: white;
+    border: 1px solid #047B97;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+    color: #047B97;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 55px;
+    background-color: #ffffff;
+    min-width: 240px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 1000;
+    border: 1px solid #e0e0e0;
+  }
+  .dropdown-header {
+    background-color: #047B97;
+    color: white;
+    padding: 12px 18px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .dropdown-header h4 {
+    margin: 0 0 3px 0;
+    font-size: 1.05em;
+    font-weight: 600;
+  }
+  .dropdown-header p {
+    margin: 0;
+    font-size: 0.85em;
+    opacity: 0.9;
+  }
+  .dropdown-body {
+    padding: 8px 0;
+    font-size: 0.9em;
+    color: #333;
+  }
+  .dropdown-body .child {
+    padding: 10px 18px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  .dropdown-body .child:last-child {
+    border-bottom: none;
+  }
+  .dropdown-body .child strong {
+    display: block;
+    font-weight: 600;
+    color: #047B97;
+    margin-bottom: 3px;
+  }
+  .dropdown-body .child span {
+    font-size: 0.9em;
+    color: #555;
+  }
+  #verTodosBtn {
+    display: block;
+    text-align: center;
+    color: #047B97;
+    font-weight: bold;
+    margin-top: 10px;
+    text-decoration: underline;
+    padding: 8px 18px;
+    font-size: 0.9em;
+    font-family: 'Montserrat', sans-serif;
+  }
+  #verTodosBtn:hover { background-color: #f5f5f5; }
+  .dropdown-actions a {
+    display: block;
+    padding: 10px 18px;
+    text-decoration: none;
+    color: #047B97;
+    font-weight: 600;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.9em;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .dropdown-actions a:hover { background-color: #f5f5f5; }
+
+  form#form_neonatal {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 12px;
+    max-width: 700px;
+    margin: 40px auto;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #003865;
+  }
+
+  form h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #003865;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #7fbcd2;
+    padding-bottom: 10px;
+    text-align: left;
+    margin-top: 30px;
+  }
+  form h2:first-of-type {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 35px;
+    margin-top: 0;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  .field > label:first-child {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #003865;
+    font-size: 15px;
+  }
+
+  .field input[type="text"],
+  .field input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #003865;
+    box-sizing: border-box;
+  }
+  .field input#ci_busqueda {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #003865;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  .radio-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 5px 0;
+  }
+  .radio-group input[type="radio"] {
+    margin-top: 1px;
+    width: auto;
+    accent-color: #047B97;
+  }
+  .radio-group label {
+    font-weight: 500;
+    margin-bottom: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #003865;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  form button#btnEnviar {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #047B97;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    margin-top: 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+  }
+
+  form button#btnEnviar:hover {
+    background-color: #036a84;
+  }
+
+  table {
+    font-size: 0.8em;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  table th {
+    background-color: #d9ebf8;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  table td {
+    padding: 15px 10px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+  }
+  table label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+  }
+  table input {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    color: #003865;
+  }
+
+  .page-footer {
+    background-color: #f6f9fc;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 0.85em;
+    color: #666;
+    border-top: 1px solid #e7e7e7;
+    margin-top: 40px;
+  }
+  
+  #btn_buscar_datos {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #047B97;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+  }
+
+  #btn_buscar_datos:hover {
+    background-color: #036a84;
+  }
+
+  @media screen and (max-width: 992px) {
+    .header-portal { flex-direction: column; align-items: flex-start; padding: 15px 20px; }
+    .header-left-section { margin-bottom: 15px; width: 100%; text-align: left; }
+    .header-left-section .site-name { font-size: 1.1em; text-align: left; }
+    .header-right-section { width: 100%; flex-direction: column; align-items: flex-end; }
+
+    .main-nav-links { display: none; }
+
+    .hamburger {
+      display: flex;
+      position: absolute;
+      top: 16px;
+      right: 80px;
+    }
+
+    .main-nav-links.responsive {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      right: 80px;
+      width: 260px;
+      flex-direction: column;
+      background-color: #047B97;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      padding: 10px 0;
+      z-index: 1000;
+    }
+    .main-nav-links.responsive a {
+      padding: 12px 20px;
+      font-size: 1em;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      color: #ffffff;
+    }
+    .main-nav-links.responsive a:last-child {
+      border-bottom: none;
+    }
+    .main-nav-links.responsive a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    form#form_neonatal {
+        padding: 30px 25px;
+        margin: 20px auto;
+    }
+    form h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    form h2:first-of-type {
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+    table { display: block; width: 100%; overflow-x: auto; }
+    th, td { font-size: 0.9em; padding: 6px; }
+  }
+
+  @media screen and (max-width: 480px) {
+    .header-left-section { align-items: center; }
+    .header-left-section .site-name { font-size: 1em; text-align: center; }
+    .main-nav-links a { display: block; width: calc(100% - 20px); text-align: center; }
+
+    .hamburger {
+      display: flex;
+      position: absolute;
+      top: 16px;
+      right: 80px;
+    }
+    .main-nav-links.responsive {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      right: 80px;
+      width: 260px;
+      flex-direction: column;
+      background-color: #047B97;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      padding: 10px 0;
+      z-index: 1000;
+    }
+    .main-nav-links.responsive a {
+      padding: 12px 15px;
+      color: #ffffff;
+    }
+
+    body { font-size: 14px; }
+    form#form_neonatal {
+        padding: 25px 15px;
+    }
+    form h2 {
+      font-size: 18px;
+    }
+    form h2:first-of-type {
+      font-size: 20px;
+    }
+    .field > label:first-child { font-size: 14px; }
+    .field input[type="text"],
+    .field input#ci_busqueda,
+    .field input[type="number"],
+    .radio-group label,
+    form button#btnEnviar {
+      padding: 10px;
+      font-size: 14px;
+    }
+    #btn_buscar_datos {
+      padding: 10px;
+      font-size: 13px;
+    }
+    .radio-group { gap: 10px; }
+    table { font-size: 0.8em; }
+    th, td { padding: 4px; }
+  }
+</style>
+</head>
+<body>
+  <header class="header-portal">
+    <div class="header-left-section">
+      <img alt="Escudo Nacional de Uruguay" class="logo-msp" src="escudonacional.png"/>
+      <h1 class="site-name">Ministerio<br/>de Salud Pública</h1>
+    </div>
+    <div class="header-right-section">
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menú móvil">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <nav class="main-nav-links" id="mainMenu">
+        <a href="inicio_portal_sin_login.html">Inicio</a>
+        <a href="form_datos.html">Carné</a>
+        <a href="consultas_vacunas.html">Consultas y Vacunas</a>
+        <a href="form_madre.html">Datos de la madre</a>
+      </nav>
+
+      <div class="user-menu">
+        <button class="user-icon" id="userIcon" title="Menú de usuario">UI</button>
+        <div class="dropdown-content" id="userDropdown">
+          <div class="dropdown-header">
+            <h4>{{tutorFullName}}</h4>
+            <p>CI: {{tutorCI_dropdown}}</p>
+          </div>
+          <div class="dropdown-body" style="color:#047B97;">
+            <div class="child">
+              <strong>{{child1FullName}}</strong>
+              <span>CI: {{child1CI}} - Edad: {{child1Age}} años</span>
+            </div>
+            <div class="child">
+              <strong>{{child2FullName}}</strong>
+              <span>CI: {{child2CI}} - Edad: {{child2Age}} años</span>
+            </div>
+            <div class="child">
+              <strong>{{child3FullName}}</strong>
+              <span>CI: {{child3CI}} - Edad: {{child3Age}} años</span>
+            </div>
+            <div class="child" style="display: none;">
+              <strong>{{child4FullName}}</strong>
+              <span>CI: {{child4CI}} - Edad: {{child4Age}} años</span>
+            </div>
+            <a href="#" id="verTodosBtn">Ver todos</a>
+          </div>
+          <div class="dropdown-actions">
+            <a href="form_tutor.html" style="font-weight: bold; color: #047B97; text-decoration: none;">➕ Agregar otro tutor</a>
+            <a href="form_nino.html" style="font-weight: bold; color: #047B97; text-decoration: none;">➕ Agregar niño</a>
+            <a href="perfil_tutor.html" target="_blank">Ver perfil completo</a>
+            <a href="#">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <form id="form_neonatal" action="api/generate/form-madre/" method="POST" >
+    <h2>Datos del embarazo y parto</h2> 
+    <div class="field" style="margin-top: 25px;">
+      <label for="ci_busqueda">Buscar por cédula del niño:</label>
+      <input type="text" id="ci_busqueda" placeholder="Ej: 12345678" name="ci_busqueda_madre">
+      <button type="button" id="btn_buscar_datos">Visualizar datos</button>
+    </div>
+
+    <div class="field">
+      <label>Múltiple:</label>
+      <div class="radio-group">
+        <input type="radio" name="multiple" id="multiple_si" value="si"><label for="multiple_si">Sí</label>
+        <input type="radio" name="multiple" id="multiple_no" value="no"><label for="multiple_no">No</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="nro_controles">Nº de controles prenatales:</label>
+      <input type="number" id="nro_controles" name="nro_controles">
+    </div>
+
+    <h2>Enfermedades de transmisión</h2>
+    <div class="field">
+      <label>ITS:</label>
+      <div class="radio-group">
+        <input type="radio" name="its" id="its_si" value="si"><label for="its_si">Sí</label>
+        <input type="radio" name="its" id="its_no" value="no"><label for="its_no">No</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="resultado_its">Resultado:</label>
+      <input type="text" id="resultado_its" name="resultado_its">
+    </div>
+    <div class="field">
+      <label for="tratamiento_its">Tratamiento:</label>
+      <input type="text" id="tratamiento_its" name="tratamiento_its">
+    </div>
+
+    <h2>Tipo de parto</h2>
+    <div class="field">
+      <label>Vaginal:</label>
+      <div class="radio-group">
+        <input type="radio" name="vaginal" id="vaginal_si" value="si"><label for="vaginal_si">Sí</label>
+        <input type="radio" name="vaginal" id="vaginal_no" value="no"><label for="vaginal_no">No</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Cesárea:</label>
+      <div class="radio-group">
+        <input type="radio" name="cesarea" id="cesarea_si" value="si"><label for="cesarea_si">Sí</label>
+        <input type="radio" name="cesarea" id="cesarea_no" value="no"><label for="cesarea_no">No</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Institucional:</label>
+      <div class="radio-group">
+        <input type="radio" name="institucional" id="institucional_si" value="si"><label for="institucional_si">Sí</label>
+        <input type="radio" name="institucional" id="institucional_no" value="no"><label for="institucional_no">No</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="otro_tipo">Otro tipo de parto:</label>
+      <input type="text" id="otro_tipo" name="otro_tipo">
+    </div>
+
+    <h2>Acompañamiento durante el parto</h2>
+    <div class="field">
+      <label>Acompañamiento:</label>
+      <div class="radio-group">
+        <input type="radio" name="acomp" id="acomp_si" value="si"><label for="acomp_si">Sí</label>
+        <input type="radio" name="acomp" id="acomp_no" value="no"><label for="acomp_no">No</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="acomp_nom">Nombre del acompañante:</label>
+      <input type="text" id="acomp_nom" name="acomp_nom">
+    </div>
+    <div class="field">
+      <label for="acomp_ap">Apellido del acompañante:</label>
+      <input type="text" id="acomp_ap" name="acomp_ap">
+    </div>
+    <div class="field">
+      <label for="edad_gestacional">Edad gestacional (semanas):</label>
+      <input type="number" id="edad_gestacional" name="edad_gestacional">
+    </div>
+    <div class="field">
+      <label for="peso_nacer">Peso al nacer (g):</label>
+      <input type="number" id="peso_nacer" name="peso_nacer">
+    </div>
+    <button type="button" id="btnEnviar">Visualizar datos</button>
+  </form>
+
+  <footer class="page-footer">
+    Plataforma oficial basada en el Carné del Control Pediátrico — Ministerio de Salud Pública (Uruguay)
+  </footer>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const icon = document.getElementById("userIcon");
+    const dropdown = document.getElementById("userDropdown");
+
+    if (icon && dropdown) {
+      icon.addEventListener("click", function (event) {
+        event.stopPropagation();
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+      });
+
+      document.addEventListener("click", function (event) {
+        if (dropdown && !event.target.closest(".user-menu")) {
+          dropdown.style.display = "none";
+        }
+      });
+    }
+
+    const verBtn = document.getElementById("verTodosBtn");
+    const childrenInDropdown = dropdown ? Array.from(dropdown.querySelectorAll(".dropdown-body .child")) : [];
+    let expanded = false;
+
+    function applyBorders() {
+      if (!dropdown) return;
+      childrenInDropdown.forEach((el, index) => {
+        el.style.borderBottom = "1px solid #eee";
+      });
+      if (expanded) {
+        if (childrenInDropdown.length > 0) {
+            childrenInDropdown[childrenInDropdown.length - 1].style.borderBottom = "none";
+        }
+      } else {
+        if (childrenInDropdown.length > 3) {
+          childrenInDropdown[2].style.borderBottom = "none";
+        } else if (childrenInDropdown.length > 0) {
+           childrenInDropdown[childrenInDropdown.length -1].style.borderBottom = "none";
+        }
+      }
+    }
+
+    function colapsar() {
+      if (!dropdown) return;
+      childrenInDropdown.forEach((el, index) => {
+        el.style.display = index < 3 ? "block" : "none";
+      });
+      if (verBtn) verBtn.textContent = "Ver todos";
+      expanded = false;
+      applyBorders();
+    }
+
+    function expandir() {
+      if (!dropdown) return;
+      childrenInDropdown.forEach(el => {
+        el.style.display = "block";
+      });
+      if (verBtn) verBtn.textContent = "Ver menos";
+      expanded = true;
+      applyBorders();
+    }
+
+    if (verBtn) {
+        if (childrenInDropdown.length > 3) {
+            colapsar();
+            verBtn.style.display = "block";
+        } else {
+            verBtn.style.display = "none";
+            expanded = true;
+            applyBorders();
+            expanded = false;
+        }
+
+        verBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (verBtn.textContent === "Ver todos") {
+            expandir();
+        } else {
+            colapsar();
+        }
+        });
+    } else if (childrenInDropdown.length > 0) {
+        expanded = true;
+        applyBorders();
+        expanded = false;
+    }
+
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mainMenu = document.getElementById("mainMenu");
+    if (hamburgerBtn && mainMenu) {
+      hamburgerBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
+        mainMenu.classList.toggle("responsive");
+      });
+      document.addEventListener("click", function (event) {
+        if (
+          mainMenu.classList.contains("responsive") &&
+          !event.target.closest(".header-right-section")
+        ) {
+          mainMenu.classList.remove("responsive");
+        }
+      });
+    }
+  });
+  </script>
+
+  <script>
+  document.getElementById('btnEnviar').addEventListener('click', async () => {
+    const form = document.getElementById('form_neonatal');
+    const formData = new FormData(form);
+    const data = {};
+    for (let [key, value] of formData.entries()) {
+      data[key] = value;
+    }
+    try {
+      const response = await fetch('http://localhost:8000/api/generate/form-madre/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        alert('Error: ' + (error.message || 'Error desconocido'));
+        return;
+      }
+      const result = await response.json();
+      alert('XML generado exitosamente:\n' + result.file);
+    } catch (err) {
+      alert('Error de red o inesperado');
+      console.error(err);
+    }
+  });
+  </script>
+
+</body>
+</html>

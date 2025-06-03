@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Nacido Vivo</title></head>
+<body>
+  <h1>Formulario Nacido Vivo</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <label>Nombre:</label><input name="nombre"><br>
+    <label>Apellido:</label><input name="apellido"><br>
+    <label>Sexo:</label>
+    <select name="sexo">
+      <option value="1">Masculino</option>
+      <option value="2">Femenino</option>
+    </select><br>
+    <label>Fecha de nacimiento:</label><input name="fecha_nacimiento" placeholder="YYYYMMDD"><br>
+    <label>Peso al nacer (g):</label><input name="peso"><br>
+    <label>Semanas de gestación:</label><input name="semanas"><br>
+    <label>Apgar 1:</label><input name="apgar1"><br>
+    <label>Apgar 5:</label><input name="apgar5"><br>
+    <button type="submit">Enviar</button>
+  </form>
+</body>
+</html>
+
+

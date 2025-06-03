@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Formulario Neonatal Completo</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f7fa; }
+    h2, h3 { color: #34495e; margin-bottom: 15px; margin-top: 40px; }
+    h2 { font-size: 18px; }
+    h3 { font-size: 16px; }
+    form { background: #fff; padding: 20px; border-radius: 5px; }
+    .field { margin-bottom: 15px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .field label { width: 250px; display: inline-block; vertical-align: top; }
+    .field input[type="text"], .field input[type="number"], .field input[type="date"], textarea {
+      width: 250px; padding: 5px;
+    }
+    .radio-group, .checkbox-group { display: inline-flex; align-items: center; gap: 10px; }
+    button {
+      padding: 12px 30px; background-color: #3498db; border: none;
+      color: #fff; cursor: pointer; font-size: 16px; display: block;
+      margin: 30px auto 10px auto;
+    }
+    button:hover { background-color: #2980b9; }
+  </style>
+</head>
+<body>
+<form id="form_neonatal">
+<!-- Acompañamiento durante el parto -->
+<h2>Acompañamiento durante el parto</h2>
+<div class="field">
+<label>Acompañamiento:</label>
+<input name="acompaniamiento" type="radio"/>Sí
+    <input name="acompaniamiento" type="radio"/>No
+  </div>
+<div class="field">
+<label>Nombre del acompañante:</label>
+<input name="nombre_acompaniamiento" type="text"/>
+</div>
+<div class="field">
+<label>Apellido del acompañante:</label>
+<input name="apellido_acompaniamiento" type="text"/>
+</div>
+<!-- Prácticas al nacimiento -->
+<h2>Prácticas al nacimiento</h2>
+<div class="field"><label>Piel con piel:</label><input type="radio"/>Sí<input type="radio"/>No</div>
+<div class="field"><label>Pecho primera hora:</label><input type="radio"/>Sí<input type="radio"/>No</div>
+<div class="field"><label>Ligadura tardía cordón:</label><input type="radio"/>Sí<input type="radio"/>No</div>
+<div class="field"><label>Reanimación:</label><input type="radio"/>Sí<input type="radio"/>No</div>
+<!-- Datos al nacer -->
+<h2>Datos al nacer</h2>
+<div class="field"><label>Edad gestacional (semanas):</label><input type="number"/></div>
+<div class="field"><label>Apgar 1':</label><input type="radio"/>Sí<input type="radio"/>No</div>
+<div class="field"><label>Apgar 5':</label><input type="radio"/>Sí<input type="radio"/>No</div>
+<div class="field"><label>Peso (g):</label><input type="number"/></div>
+<div class="field"><label>Talla (cm):</label><input type="number"/></div>
+<div class="field"><label>Perímetro cefálico (cm):</label><input type="number"/></div>
+<!-- Laboratorio y UCI -->
+<h2>Laboratorio y UCI</h2>
+<div class="field"><label>Grupo sanguíneo:</label><input type="text"/></div>
+<div class="field"><label>RH:</label><input type="text"/></div>
+<div class="field"><label>Coombs:</label><input type="radio"/>–<input type="radio"/>+</div>
+<div class="field"><label>ITS:</label><input type="radio"/>–<input type="radio"/>+</div>
+<div class="field"><label>Ingreso UCI:</label><input type="checkbox"/></div>
+<div class="field"><label>CPAP/AVM:</label><input type="checkbox"/></div>
+<div class="field"><label>EMH:</label><input type="checkbox"/></div>
+<div class="field"><label>Surfactante:</label><input type="checkbox"/></div>
+<div class="field"><label>ECN:</label><input type="checkbox"/></div>
+<div class="field"><label>Otras intervenciones:</label><input type="text"/></div>
+<!-- Alimentación al alta -->
+<h2>Alimentación al alta</h2>
+<div class="field"><label>Lactancia:</label><input type="radio"/>Sí<input type="radio"/>No</div>
+<div class="field"><label>PPL (preparados):</label><input type="radio"/>Sí<input type="radio"/>No</div>
+<div class="field"><label>Peso al egreso (g):</label><input type="number"/></div>
+<!-- Pesquisa neonatal y del lactante -->
+<h2>Pesquisa neonatal y lactante</h2>
+<h3>Detección por gota de sangre</h3>
+<div class="field"><label>Hipotiroidismo Congénito:</label><input type="radio"/>No<input type="radio"/>Sí</div>
+<div class="field"><label>Fibrosis Quística:</label><input type="radio"/>No<input type="radio"/>Sí</div>
+<div class="field"><label>Fenilcetonuria:</label><input type="radio"/>No<input type="radio"/>Sí</div>
+<div class="field"><label>Hiperplasia Suprarrenal:</label><input type="radio"/>No<input type="radio"/>Sí</div>
+<div class="field"><label>Déficit de Acetil CoA:</label><input type="radio"/>No<input type="radio"/>Sí</div>
+<div class="field"><label>Hemoglobinopatías:</label><input type="radio"/>No<input type="radio"/>Sí<input placeholder="Cuál" type="text"/></div>
+<!-- Hipoacusia Congénita -->
+<h3>Hipoacusia Congénita: Detección por Emisiones Oto Acústicas</h3>
+<div class="field">
+<label><strong>Primera EAO:</strong></label>
+</div>
+<div class="field">
+<label>Oído Derecho:</label>
+<label><input name="primera_eao_derecho" type="radio" value="pasa"/> Pasa</label>
+<label><input name="primera_eao_derecho" type="radio" value="no_pasa"/> No pasa</label>
+</div>
+<div class="field">
+<label>Oído Izquierdo:</label>
+<label><input name="primera_eao_izquierdo" type="radio" value="pasa"/> Pasa</label>
+<label><input name="primera_eao_izquierdo" type="radio" value="no_pasa"/> No pasa</label>
+</div>
+<div class="field">
+<label><strong>Segunda EAO:</strong></label>
+</div>
+<div class="field">
+<label>Oído Derecho:</label>
+<label><input name="segunda_eao_derecho" type="radio" value="pasa"/> Pasa</label>
+<label><input name="segunda_eao_derecho" type="radio" value="no_pasa"/> No pasa</label>
+</div>
+<div class="field">
+<label>Oído Izquierdo:</label>
+<label><input name="segunda_eao_izquierdo" type="radio" value="pasa"/> Pasa</label>
+<label><input name="segunda_eao_izquierdo" type="radio" value="no_pasa"/> No pasa</label>
+</div>
+<div class="field"><label>Potenciales Evocados Auditivos:</label><input type="radio"/>N<input type="radio"/>P <span style="margin-left:10px">(N: Normal, P: Patológica)</span></div>
+<div class="field"><label>Potenciales de Estado Estable:</label><input type="radio"/>N<input type="radio"/>P</div>
+<div class="field"><label>Derivación ORL:</label><input type="radio"/>Sí<input type="radio"/>No</div>
+<!-- Detección de malformaciones congénitas -->
+<h2>Detección de malformaciones congénitas y enfermedades raras</h2>
+<div class="field"><label>Saturación Pre y Post Ductal:</label><input type="radio"/>N<input type="radio"/>P <span style="margin-left:10px">Cardiopatía Congénita:</span><input type="text"/></div>
+<div class="field"><label>Defectos de Tubo Neural:</label>
+<input type="checkbox"/>Mielomeningocele<input type="checkbox"/>Encefalocele<input type="checkbox"/>Anencefalia
+  </div>
+<div class="field"><label>Síndrome de Down:</label><input type="checkbox"/></div>
+<div class="field"><label>Otros:</label><input type="text"/></div>
+<!-- Malformaciones congénitas estomatognáticas -->
+<h2>Malformaciones congénitas de sistema estomatognático</h2>
+<div class="field" style="flex-direction: column; align-items: flex-start;">
+<label><input name="malformacion" type="checkbox" value="labio_fisurado_unilateral"/> Labio fisurado unilateral</label>
+<label><input name="malformacion" type="checkbox" value="labio_fisurado_y_paladar"/> Labio fisurado unilateral y paladar hendido</label>
+<label><input name="malformacion" type="checkbox" value="paladar_hendido"/> Paladar hendido</label>
+<label><input name="malformacion" type="checkbox" value="frenillo_corto"/> Frenillo lingual corto, lengua atada</label>
+<label for="otras_malformaciones">Otros:</label>
+<input id="otras_malformaciones" name="otras_malformaciones" type="text"/>
+</div>
+<!-- Ecografía de cadera -->
+<h2>Ecografía de cadera</h2>
+<div class="field">
+<label><input name="eco_hecha" style="transform: scale(1.3); margin-right: 8px;" type="checkbox"/> Se realizó la ecografía de cadera</label>
+</div>
+<div class="field">
+<label for="fecha_ecografia">Fecha:</label>
+<input id="fecha_ecografia" name="fecha_ecografia" type="date"/>
+</div>
+<div class="field">
+<label for="resultado_ecografia">Resultado:</label>
+<textarea cols="50" id="resultado_ecografia" name="resultado_ecografia" rows="3"></textarea>
+</div>
+<button type="submit">Guardar datos</button>
+</form>
+</body>
+</html>
+
+</body>
+</html>

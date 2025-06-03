@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Portal del Tutor - MSP</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Segoe+UI:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f6f9fc;
+      color: #333;
+    }
+
+    .header-portal {
+      background-color: #047B97;
+      color: white;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .header-left-section { display: flex; align-items: center; }
+    .header-left-section .logo-msp {
+      height: 70px;
+      margin-right: 12px;
+    }
+    .header-left-section .site-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95em;
+      line-height: 1.2;
+      margin: 0;
+      text-align: left;
+    }
+    .header-right-section { display: flex; align-items: center; }
+
+    .pdf-cover-emulation-container {
+      display: flex;
+      justify-content: center;
+      padding: 40px 30px;
+      box-sizing: border-box;
+    }
+
+    .pdf-cover-content {
+      background-color: #047B97; 
+      color: #FFFFFF; 
+      width: 100%;
+      max-width: 800px;
+      min-height: 75vh;
+      padding: 50px 60px 0px 60px; 
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    .pdf-main-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin-bottom: 40px; 
+    }
+
+    .title-section {
+      flex-basis: 55%;
+      text-align: left;
+    }
+    .cover-main-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2.9em;
+      color: #FFFFFF;
+      line-height: 1.15;
+      margin: 0 0 15px 0;
+    }
+    .cover-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.3em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .identification-document-info {
+      flex-basis: 40%;
+      text-align: left;
+      padding-top: 20px;
+      font-family: 'Montserrat', sans-serif;
+      color: #FFFFFF;
+    }
+    .id-doc-main {
+      font-weight: 700;
+      font-size: 0.95em;
+      text-transform: uppercase;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.5px;
+    }
+    .id-doc-secondary {
+      font-weight: 400;
+      font-size: 0.95em;
+      text-transform: uppercase;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.5px;
+    }
+    .legal-references {
+      margin-top: 20px;
+    }
+    .legal-references p {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 0.85em;
+      color: #FFFFFF;
+      opacity: 0.9;
+      margin: 3px 0;
+    }
+
+    .bottom-logo-area {
+        background-color: #FFFFFF;
+        padding: 20px 0;
+        margin-left: -60px;
+        margin-right: -60px;
+        margin-bottom: -0px;
+        text-align: right;
+    }
+    .imo-logo-container {
+        display: inline-block;
+        padding-right: 60px;
+    }
+    .imo-logo-container img {
+      height: 45px;
+      display: block;
+    }
+
+    .page-footer {
+      background-color: #f6f9fc;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.85em;
+      color: #666;
+      margin-top: 0;
+      border-top: 1px solid #e7e7e7;
+    }
+
+    @media screen and (max-width: 992px) {
+        .card-dual-column {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: center;
+          gap: 40px;
+        }
+        .header-portal { flex-direction: column; align-items: flex-start; padding: 15px 20px; }
+        .header-left-section { margin-bottom: 15px; width: 100%; text-align: left; } 
+        .header-left-section .site-name { font-size: 1.1em; text-align: left; }
+        .header-right-section { width: 100%; flex-direction: column; align-items: center; }
+
+        .pdf-cover-content { padding: 40px 30px 0px 30px; min-height: auto; }
+        .pdf-main-area { flex-direction: column; align-items: center; text-align: center; }
+        .title-section { margin-bottom: 30px; width: 100%; text-align: center;}
+        .cover-main-title { font-size: 2em; }
+        .identification-document-info { width: 100%; text-align: center; padding-top: 0; margin-bottom: 20px; }
+        .bottom-logo-area { margin-left: -30px; margin-right: -30px; padding: 15px 0; text-align: center;}
+        .imo-logo-container { padding-right: 0; }
+    }
+
+    @media screen and (max-width: 480px) {
+        .header-left-section { align-items: center; } 
+        .header-left-section .site-name { font-size: 1em; text-align: center; }
+        .cover-main-title { font-size: 1.8em; }
+        .cover-subtitle { font-size: 1em; }
+        .id-doc-main, .id-doc-secondary { font-size: 0.9em;}
+        .legal-references p { font-size: 0.8em; }
+        .pdf-cover-content { padding: 30px 15px 0px 15px; }
+        .bottom-logo-area { margin-left: -15px; margin-right: -15px; }
+        .imo-logo-container img { height: 35px; }
+    }
+
+.cover-description {
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  color: #ffffff;
+  line-height: 1.6;
+  opacity: 0.95;
+  max-width: 500px;
+}
+
+.card-dual-column {
+  display: flex;
+  align-items: stretch;
+  gap: 40px;
+  justify-content: center;
+  padding-bottom: 60px;
+}
+
+.pdf-cover-content,
+.container {
+  flex: 1;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-dual-column {
+  display: flex;
+  align-items: stretch;
+  gap: 40px;
+  justify-content: center;
+  padding-bottom: 60px;
+  min-height: 750px;
+}
+
+.pdf-cover-content,
+.container {
+  flex: 1;
+  height: 100%;
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, #FAF4F0 0%, #FFFFFF 100%);
+}
+
+.pdf-cover-content,
+.container {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+}
+
+body {
+  background: linear-gradient(to bottom, #EAF6FB 0%, #FFFFFF 100%);
+}
+
+.pdf-cover-content,
+.container {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.10), inset 0 1px 2px rgba(255,255,255,0.4);
+  border: 1px solid #E4D7CE;
+  border-radius: 12px;
+  padding: 60px;
+}
+
+.cover-main-title {
+  margin-bottom: 25px;
+}
+
+.cover-subtitle {
+  margin-bottom: 15px;
+}
+
+.cover-description {
+  margin-bottom: 30px;
+}
+
+form#form_login {
+  margin-top: 10px;
+}
+
+</style>
+</head>
+<body>
+<header class="header-portal">
+  <div class="header-left-section">
+    <img alt="Escudo Nacional de Uruguay" class="logo-msp" src="escudonacional.png"/>
+    <h1 class="site-name">Ministerio<br/>de Salud Pública</h1>
+  </div>
+  <div class="header-right-section">
+  </div>
+</header>
+
+<div class="pdf-cover-emulation-container">
+  <div class="card-dual-column">
+
+    <div class="pdf-cover-content" style="max-width: 650px; flex-shrink: 0; min-height: 600px;">
+      <div class="pdf-main-area">
+        <div class="title-section">
+          <h1 class="cover-main-title">Carné de control<br/>pediátrico</h1>
+          <p class="cover-subtitle">DE 0 A 12 AÑOS</p>
+          <p class="cover-description">Este documento contiene la información clínica esencial del niño o niña desde su nacimiento hasta los 12 años. Registra los controles de salud, vacunas, desarrollo físico y neurológico, y es requisito para actividades escolares y recreativas. Su presentación es obligatoria al ingresar a centros educativos.</p>
+        </div>
+        <div class="identification-document-info">
+          <p class="id-doc-main">DOCUMENTO DE IDENTIFICACIÓN</p>
+          <p class="id-doc-secondary">EN LOS SERVICIOS DE SALUD Y ESTABLECIMIENTOS EDUCATIVOS</p>
+          <div class="legal-references">
+            <p>Ley N° 14.852</p>
+            <p>Decreto 542/007</p>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-logo-area">
+        <div class="imo-logo-container">
+          <img alt="Logo IMPO" src="impo.png"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="max-width: 650px; background-color: white; padding: 50px 60px 40px 60px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); font-family: 'Montserrat', sans-serif; color: #003865; display: flex; flex-direction: column; justify-content: flex-start; box-sizing: border-box; min-height: 600px;">
+      <h2 style="font-size: 28px; font-weight: 700; color: #003865; margin-bottom: 30px; border-bottom: 2px solid #7fbcd2; padding-bottom: 10px; text-align: center;">Iniciar Sesión</h2>
+      <form id="form_login">
+        <div class="field">
+          <label for="ci" style="font-weight: 500; margin-bottom: 5px; display: block; font-size: 15px;">Cédula de Identidad:</label>
+          <input id="ci" maxlength="8" name="ci" placeholder="Ej: 12345678" required="" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #ccc; border-radius: 6px; background-color: #ffffff; margin-bottom: 18px; color: #003865; box-sizing: border-box;" type="text"/>
+        </div>
+        <div class="field">
+          <label for="password" style="font-weight: 500; margin-bottom: 5px; display: block; font-size: 15px;">Contraseña:</label>
+          <input id="password" name="password" placeholder="Tu contraseña" required="" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #ccc; border-radius: 6px; background-color: #ffffff; margin-bottom: 18px; color: #003865; box-sizing: border-box;" type="password"/>
+        </div>
+        <button style="background-color: #047B97; color: white; font-weight: 600; font-size: 15px; padding: 12px; border: none; border-radius: 6px; width: 100%; margin-top: 12px; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px; box-sizing: border-box;" type="submit">Ingresar</button>
+        <button class="google-btn" style="background-color: #047B97; color: white; font-weight: 600; font-size: 15px; padding: 12px; border: none; border-radius: 6px; width: 100%; margin-top: 12px; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px; box-sizing: border-box;" type="button">
+          <img alt="Google" src="https://www.google.com/favicon.ico" style="width: 22px; height: 22px; vertical-align: middle;"/> Iniciar sesión con Google
+        </button>
+        <p style="text-align: center; font-size: 14px; color: #003865; margin-top: 30px;">
+          ¿Todavía no estás registrado? 
+          <a href="form_tutor.html" style="color: #003865; text-decoration: underline; font-weight: 600;">Creá tu cuenta como tutor</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+    Plataforma oficial basada en el Carné del Control Pediátrico — Ministerio de Salud Pública (Uruguay)
+</footer>
+
+<script>
+  document.getElementById("form_login").addEventListener("submit", async function(e) {
+    e.preventDefault();
+  
+    const ci = document.getElementById("ci").value.trim();
+    const password = document.getElementById("password").value.trim();
+  
+    const response = await fetch("http://localhost:8000/api/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ ci, password })
+    });
+  
+    const data = await response.json();
+  
+    if (response.ok && data.success) {
+      alert("Inicio de sesión exitoso");
+      window.location.href = "inicio_portal_sin_login.html"; 
+    } else {
+      alert(data.message || "Error en el inicio de sesión");
+    }
+  });
+</script>
+</body>
+</html>
