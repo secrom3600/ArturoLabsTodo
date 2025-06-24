@@ -1,0 +1,13 @@
+<Nino>
+    <id>61234567</id>
+    <nombres>Sofía</nombres>
+    <apellidos>Pereira</apellidos>
+    <etnia>Blanca</etnia>
+    <sexo>F</sexo>
+    <fechaNacimiento>2019-06-21</fechaNacimiento>
+    <nacionalidad>Uruguaya</nacionalidad>
+    <domicilio>Montevideo</domicilio>
+    <telefono>29837465</telefono>
+    <servicioSalud>ASSE</servicioSalud>
+    <emergenciaMovil>35678921</emergenciaMovil>
+</Nino>

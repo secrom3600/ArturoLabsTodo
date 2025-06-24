@@ -1,0 +1,13 @@
+<Nino>
+    <id>63456789</id>
+    <nombres>Thiago</nombres>
+    <apellidos>Dias</apellidos>
+    <etnia>Blanca</etnia>
+    <sexo>M</sexo>
+    <fechaNacimiento>2017-02-03</fechaNacimiento>
+    <nacionalidad>Uruguaya</nacionalidad>
+    <domicilio>Montevideo</domicilio>
+    <telefono>28765432</telefono>
+    <servicioSalud>ASSE</servicioSalud>
+    <emergenciaMovil>0</emergenciaMovil>
+</Nino>

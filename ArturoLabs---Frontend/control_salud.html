@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CONTROL DE SALUD</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 6px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    img {
+      max-width: 600px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>CONTROL DE SALUD</h2>
+
+<input type="number" id="ciInput" placeholder="Ingrese CI" />
+<button onclick="buscarControl()">Buscar</button>
+
+<table id="controlTable">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Edad</th>
+      <th>Peso (kg)</th>
+      <th>Talla (cm)</th>
+      <th>PC (cm)</th>
+      <th>PPL</th>
+      <th>Complemento</th>
+      <th>Hierro</th>
+      <th>Vitamina D</th>
+      <th>Circunferencia de Cintura (cm)</th>
+      <th>IMC</th>
+      <th>PAS</th>
+      <th>PAD</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<h3>IMC para la edad del Niño - Percentiles (5 a 12 años)</h3>
+<img id="graficoIMC" src="" alt="Gráfico IMC" />
+
+<script>
+  function buscarControl() {
+    const ci = document.getElementById("ciInput").value;
+
+    fetch(`http://127.0.0.1:8000/api/control/${ci}/`)
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.querySelector("#controlTable tbody");
+        tbody.innerHTML = "";
+
+        data.data.forEach(reg => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${reg.fecha}</td>
+            <td>${reg.edad}</td>
+            <td>${reg.peso}</td>
+            <td>${reg.talla}</td>
+            <td>${reg.pc ? "Sí" : "No"}</td>
+            <td>${reg.ppl ? "Sí" : "No"}</td>
+            <td>${reg.complemento ? "Sí" : "No"}</td>
+            <td>${reg.hierro ? "Sí" : "No"}</td>
+            <td>${reg.vitamina_d ? "Sí" : "No"}</td>
+            <td>${reg.circunferencia_cintura}</td>
+            <td>${reg.IMC}</td>
+            <td>${reg.pas}</td>
+            <td>${reg.pad}</td>
+          `;
+          tbody.appendChild(row);
+        });
+        
+        // Mostrar imagen del gráfico IMC
+        document.getElementById("graficoIMC").src = data.imc_edad_graph;
+      })
+      .catch(err => {
+        alert("Error al buscar los datos del CI");
+        console.error(err);
+      });
+  }
+</script>
+
+</body>
+</html>

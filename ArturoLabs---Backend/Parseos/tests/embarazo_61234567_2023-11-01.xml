@@ -1,0 +1,17 @@
+<Embarazo>
+    <idNino>61234567</idNino>
+    <embarazoMultiple>false</embarazoMultiple>
+    <controlesPrenatales>6</controlesPrenatales>
+    <its>false</its>
+    <resultado>Negativo</resultado>
+    <tratamiento>Ninguno</tratamiento>
+    <tpVaginal>true</tpVaginal>
+    <tpCesarea>false</tpCesarea>
+    <tpInstitucional>true</tpInstitucional>
+    <otroTipoParto>#N/A</otroTipoParto>
+    <acompanamiento>true</acompanamiento>
+    <nombreAcompanante>Lucía</nombreAcompanante>
+    <apellidoAcompanante>Martínez</apellidoAcompanante>
+    <edadGestacional>39</edadGestacional>
+    <pesoNacimiento>2655.3</pesoNacimiento>
+</Embarazo>

@@ -1,0 +1,16 @@
+<Vacunas>
+    <idNino>52345678</idNino>
+    <BCG>true</BCG>
+    <Pentavalente>true</Pentavalente>
+    <Polio>true</Polio>
+    <SarampionRubeolaPaperas>true</SarampionRubeolaPaperas>
+    <Varicela>false</Varicela>
+    <Neumococo13V>true</Neumococo13V>
+    <HepatitisA>true</HepatitisA>
+    <TripleBacterianaDPT>true</TripleBacterianaDPT>
+    <TripleBacterianaDPAT>false</TripleBacterianaDPAT>
+    <VPH>false</VPH>
+    <AntiInfluenza>true</AntiInfluenza>
+    <EdadMeses>2</EdadMeses>
+    <EdadAnios>0</EdadAnios>
+</Vacunas>

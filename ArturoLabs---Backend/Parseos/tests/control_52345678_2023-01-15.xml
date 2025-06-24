@@ -1,0 +1,16 @@
+<ControlSalud>
+    <idNino>52345678</idNino>
+    <fecha>2023-01-15</fecha>
+    <edad>6</edad>
+    <peso>20.2</peso>
+    <talla>106.4</talla>
+    <pc>52.8</pc>
+    <alimentacionPD>true</alimentacionPD>
+    <alimentacionPPL>false</alimentacionPPL>
+    <hierroVitD>true</hierroVitD>
+    <fechaProximaConsulta>2025-12-01</fechaProximaConsulta>
+    <circunferenciaCintura>54.6</circunferenciaCintura>
+    <imc>19.6</imc>
+    <pas>90.1</pas>
+    <pad>68.9</pad>
+</ControlSalud>

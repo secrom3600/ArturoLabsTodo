@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alta Tutor - Portal MSP</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Segoe+UI:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(to bottom, #EAF6FB 0%, #FFFFFF 100%);
+      color: #333;
+      line-height: 1.4;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .header-portal {
+      background-color: #047B97;
+      color: white;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1000;
+    }
+ 
+    .header-left-section {
+      display: flex;
+      align-items: center;
+    }
+    .header-left-section .logo-msp {
+      height: 70px;
+      margin-right: 12px;
+    }
+    .header-left-section .site-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95em;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    
+    .header-right-section {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      z-index: 1100;
+    }
+    .hamburger .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+
+    form#form_tutor,
+    div#verificacion_2fa form {
+      background-color: #ffffff;
+      padding: 40px 50px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: 40px auto;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #003865;
+    }
+    form h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #003865;
+      margin-bottom: 35px;
+      border-bottom: 2px solid #7fbcd2;
+      padding-bottom: 12px;
+      text-align: center;
+      margin-top: 0;
+    }
+    .field {
+      margin-bottom: 20px;
+    }
+    .field label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #003865;
+      font-size: 15px;
+    }
+    .field input[type="text"],
+    .field input[type="date"],
+    .field input[type="email"],
+    .field input[type="password"],
+    .field input[type="tel"],
+    .field select,
+    .field textarea,
+    div#verificacion_2fa form input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 15px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #ffffff;
+      color: #003865;
+      box-sizing: border-box;
+    }
+    form button,
+    form button[type="submit"],
+    form button[type="button"] {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #047B97;
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      width: 100%;
+      margin-top: 25px;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: block;
+    }
+    form button:hover,
+    form button[type="submit"]:hover,
+    form button[type="button"]:hover {
+      background-color: #036a84;
+    }
+    .error-text {
+        color: #D8000C;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        margin-top: 6px;
+        min-height: 1em;
+    }
+
+    .page-footer {
+      background-color: #1e8197;
+      padding: 40px 20px 20px 20px;
+      color: white;
+      font-size: 15px;
+      border-top: 1px solid #ffffff;
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      gap: 30px;
+      margin-top: 40px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .footer-columns-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 100%;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      padding: 0 15px;
+    }
+    
+    .footer-column:not(:last-of-type) {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-column h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .footer-column .footer-main-heading {
+        font-size: 1.4em;
+        margin-bottom: 25px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    .footer-column ul li a {
+      color: white;
+      font-size: 1em;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-column ul li a:hover {
+      color: #ffc107;
+      transform: translateX(4px);
+      text-decoration: none;
+    }
+    .contact-info p {
+      margin-bottom: 8px;
+      font-size: 1em;
+    }
+    .contact-info a {
+      color: white;
+      text-decoration: underline;
+    }
+    .contact-info a:hover {
+      text-decoration: none;
+    }
+    .newsletter-section {
+      margin-top: 20px;
+    }
+    .newsletter-section label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+    .newsletter-input-group {
+      display: flex;
+      gap: 10px;
+    }
+    .newsletter-input {
+      flex-grow: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .newsletter-button {
+      background-color: #ffc107;
+      color: #0d3b61;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+    .newsletter-button:hover {
+      background-color: #e0a800;
+    }
+
+    .footer-bottom {
+      width: 100%;
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .social-icons-bottom {
+      display: flex;
+      gap: 20px;
+    }
+    .social-icons-bottom a {
+      font-size: 24px;
+      transition: transform 0.2s ease;
+    }
+    .social-icons-bottom a:hover {
+        transform: scale(1.15);
+    }
+    .social-icons-bottom img {
+      height: 24px;
+      width: 24px;
+    }
+    .footer-links-bottom {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-links-bottom a {
+      font-size: 0.95em;
+    }
+    .footer-logo-gub {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-logo-gub img {
+      height: 24px;
+    }
+    .footer-logo-gub span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2em;
+    }
+    
+    .scroll-top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #047B97;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .scroll-top-button:hover {
+      background-color: #005f79;
+    }
+    .scroll-top-button.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media screen and (max-width: 992px) {
+      .header-portal {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+      }
+      .header-left-section {
+        margin-bottom: 15px;
+        width: 100%;
+        text-align: left;
+      }
+      .header-left-section .site-name {
+        font-size: 1.1em;
+        text-align: left;
+      }
+     
+      .header-right-section {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+    
+      form#form_tutor,
+      div#verificacion_2fa form {
+        padding: 30px 25px;
+        margin: 20px auto;
+      }
+      form h2 {
+        font-size: 22px;
+        margin-bottom: 25px;
+      }
+      .page-footer {
+            align-items: center;
+            text-align: center;
+        }
+        .footer-columns-container {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .footer-column {
+            width: 100%;
+            min-width: unset;
+            padding: 0;
+        }
+        .footer-column:not(:last-of-type) {
+            border-right: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+         .footer-column:last-of-type {
+            border-bottom: none;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+      .header-left-section {
+        align-items: center;
+      }
+      .header-left-section .site-name {
+        font-size: 1em;
+        text-align: center;
+      }
+
+      
+      .hamburger {
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 80px;
+      }
+
+      body {
+        font-size: 14px;
+      }
+      form#form_tutor,
+      div#verificacion_2fa form {
+        padding: 25px 15px;
+      }
+      form h2 {
+        font-size: 20px;
+      }
+      .field label {
+        font-size: 14px;
+      }
+      .field input[type="text"],
+      .field input[type="date"],
+      .field input[type="email"],
+      .field input[type="password"],
+      .field input[type="tel"],
+      .field select,
+      .field textarea,
+      div#verificacion_2fa form input[type="text"] {
+        padding: 10px;
+        font-size: 14px;
+      }
+      form button,
+      form button[type="submit"],
+      form button[type="button"] {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header-portal">
+    <div class="header-left-section">
+      <img
+        src="escudonacional.png"
+        alt="Escudo Nacional de Uruguay"
+        class="logo-msp"
+      />
+      <h1 class="site-name">Ministerio<br />de Salud Pública</h1>
+    </div>
+
+    <div class="header-right-section">
+      </div>
+  </header>
+
+  <form id="form_tutor" novalidate>
+    <h2>Alta de Tutor</h2>
+    <div class="field">
+        <label for="nombre">Nombres:</label>
+        <input type="text" id="nombre" name="nombre" required />
+        <div class="error-text" id="nombre-error"></div>
+    </div>
+    <div class="field">
+        <label for="apellido">Apellidos:</label>
+        <input type="text" id="apellido" name="apellido" required />
+        <div class="error-text" id="apellido-error"></div>
+    </div>
+    <div class="field">
+        <label for="ci">Cédula de identidad:</label>
+        <input type="text" id="ci" name="ci" required />
+        <div class="error-text" id="ci-error"></div>
+    </div>
+    <div class="field">
+        <label for="nacionalidad">Nacionalidad:</label>
+        <input type="text" id="nacionalidad" name="nacionalidad" required />
+        <div class="error-text" id="nacionalidad-error"></div>
+    </div>
+    <div class="field">
+        <label for="fecha_nacimiento">Fecha Nacimiento:</label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required />
+        <div class="error-text" id="fecha_nacimiento-error"></div>
+    </div>
+    <div class="field">
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" required>
+            <option value="">Seleccione...</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+            <option value="O">Otro</option>
+        </select>
+        <div class="error-text" id="sexo-error"></div>
+    </div>
+    <div class="field">
+        <label for="calle">Calle:</label>
+        <input type="text" id="calle" name="calle" required />
+        <div class="error-text" id="calle-error"></div>
+    </div>
+    <div class="field">
+        <label for="num_puer">Número de puerta:</label>
+        <input type="text" id="num_puer" name="num_puer" required />
+        <div class="error-text" id="num_puer-error"></div>
+    </div>
+    <div class="field">
+        <label for="localidad">Localidad:</label>
+        <input type="text" id="localidad" name="localidad" required />
+        <div class="error-text" id="localidad-error"></div>
+    </div>
+    <div class="field">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required />
+        <div class="error-text" id="email-error"></div>
+    </div>
+    <div class="field">
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required />
+        <div class="error-text" id="telefono-error"></div>
+    </div>
+    <div class="field">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required />
+        <div class="error-text" id="password-error"></div>
+    </div>
+    <button type="submit">Registrar Tutor</button>
+</form>
+
+  <div id="verificacion_2fa" style="display: none;">
+    <form>
+      <h2>Verificación de Código</h2>
+      <div class="field">
+        <label for="codigo_2fa">Código de Verificación:</label>
+        <input id="codigo_2fa" name="codigo_2fa" required type="text" />
+      </div>
+      <button type="button" id="verificar_2fa">Verificar</button>
+    </form>
+  </div>
+
+  <footer class="page-footer">
+    <div class="footer-columns-container">
+        <div class="footer-column">
+          <h3 class="footer-main-heading">Ministerio de Salud Pública</h3>
+          <div class="contact-info">
+            <p>Dirección: 18 de julio 1892</p>
+            <p>Teléfono: 1934</p>
+            <p><a href="#">Contacto</a></p>
+            <p>Horario de atención: Lunes a viernes de 09:00 a 15:00</p>
+          </div>
+          <div class="newsletter-section">
+            <label for="email-newsletter">Suscribirse al boletín:</label>
+            <div class="newsletter-input-group">
+              <input type="email" id="email-newsletter" class="newsletter-input" placeholder="Correo electrónico">
+              <button type="submit" class="newsletter-button">Suscribirse</button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="footer-column">
+          <h3>Teléfonos de interés</h3>
+          <ul>
+            <li><a href="#">Atención a Usuario de ASSE: 2486 5008 ints. 2425 o 2426</a></li>
+            <li><a href="#">Línea Azul (INAU): 0800 5050</a></li>
+            <li><a href="#">Centro de Información y Asesoramiento Toxicolgico: 1722</a></li>
+            <li><a href="#">MIDES: 0800 7263</a></li>
+            <li><a href="#">Lactancia: 1934 interno 4250</a></li>
+          </ul>
+        </div>
+    
+        <div class="footer-column">
+          <h3>Enlaces de interés</h3>
+          <ul>
+            <li><a href="#">Guía de Primeros Auxilios Digital</a></li>
+            <li><a href="#">Guía de Alimentación en la Primera Infancia</a>
+            <li><a href="#">Directorio de Centros de Salud Afiliados</a></li>
+            <li><a href="#">Portal de Denuncias a Instituciones de Salud</a></li>
+            <li><a href="#">Portal de Atención Terapéutica Pediátrica</a></li>
+            <li><a href="#">Noticias y Alertas Sanitarias</a></li>
+          </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="social-icons-bottom">
+        <a href="https://www.facebook.com/MSPUruguay" target="_blank" aria-label="Facebook del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+        <a href="https://wa.me/MESSAGE_NUMBER" target="_blank" aria-label="WhatsApp del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
+        <a href="https://www.youtube.com/watch?v=rtLkYgFm17w" target="_blank" aria-label="YouTube del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"></a>
+        <a href="https://www.instagram.com/msp_uruguay/" target="_blank" aria-label="Instagram del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"></a>
+      </div>
+      <div class="footer-links-bottom">
+        <a href="https://www.gub.uy/instituciones/ministerio-salud-publica/sitio-oficial" target="_blank">Sitio oficial de la República Oriental del Uruguay</a>
+        <a href="https://www.gub.uy/mapa-sitio" target="_blank">Mapa del sitio</a>
+        <a href="https://www.gub.uy/declaracion-accesibilidad" target="_blank">Declaración de accesibilidad</a>
+        <a href="https://www.gub.uy/terminos-uso" target="_blank">Términos de uso</a>
+        <a href="https://www.gub.uy/politica-privacidad" target="_blank">Política de Privacidad</a>
+      </div>
+      <div class="footer-logo-gub">
+        <img src="gubuy.png" alt="Logo Uruguay.uy" style="height: 24px;">
+        <span>Uruguay.uy</span>
+      </div>
+      <div class="footer-logo-gub" style="margin-top: 10px;">
+        <img src="uruguaynat.png" alt="gub.uy" style="height: 24px;">
+        <span>gub.uy</span>
+      </div>
+    </div>
+
+    <a href="#" id="scrollTopBtn" class="scroll-top-button" title="Volver arriba">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+          <path d="M12 4l-8 8h5v6h6v-6h5z" />
+        </svg>
+    </a>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mainMenu = document.getElementById('mainMenu'); 
+      if (hamburgerBtn && mainMenu) { 
+        hamburgerBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          mainMenu.classList.toggle('responsive');
+        });
+        document.addEventListener('click', function (e) {
+          if (
+            mainMenu.classList.contains('responsive') &&
+            !e.target.closest('.header-right-section')
+          ) {
+            mainMenu.classList.remove('responsive');
+          }
+        });
+      }
+
+    
+      document.getElementById('form_tutor').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        document.querySelectorAll('.error-text').forEach(el => el.textContent = '');
+
+        const nombre = document.getElementById('nombre').value.trim();
+        const apellido = document.getElementById('apellido').value.trim();
+        const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
+        const sexo = document.getElementById('sexo').value.trim();
+        const calle = document.getElementById('calle').value.trim();
+        const puerta = document.getElementById('num_puer').value.trim();
+        const localidad = document.getElementById('localidad').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const telefonoInput = document.getElementById('telefono').value.trim();
+        const cedulaInput = document.getElementById('ci').value.trim();
+        const nacionalidad = document.getElementById('nacionalidad').value.trim();
+        const password = document.getElementById('password').value;
+        let isValid = true;
+
+        if (!nombre) {
+            document.getElementById('nombre-error').textContent = 'El nombre es obligatorio.';
+            isValid = false;
+        }
+        if (!apellido) {
+            document.getElementById('apellido-error').textContent = 'El apellido es obligatorio.';
+            isValid = false;
+        }
+        const cedula = cedulaInput.replace(/\D/g, '');
+        if (!cedulaInput) {
+            document.getElementById('ci-error').textContent = 'La cédula de identidad es obligatoria.';
+            isValid = false;
+        } else if (cedula.length !== 8) {
+            document.getElementById('ci-error').textContent = 'La cédula debe contener exactamente 8 dígitos numéricos.';
+            isValid = false;
+        }
+        if (!nacionalidad) {
+            document.getElementById('nacionalidad-error').textContent = 'La nacionalidad es obligatoria.';
+            isValid = false;
+        }
+        if (!fechaNacimiento) {
+            document.getElementById('fecha_nacimiento-error').textContent = 'La fecha de nacimiento es obligatoria.';
+            isValid = false;
+        } else {
+            const hoy = new Date();
+            const nacimiento = new Date(fechaNacimiento);
+            let edad = hoy.getFullYear() - nacimiento.getFullYear();
+            const mes = hoy.getMonth() - nacimiento.getMonth();
+            if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+              edad--;
+            }
+            if (edad < 0 || edad > 110) {
+              document.getElementById('fecha_nacimiento-error').textContent = 'La fecha de nacimiento no es válida (edad máxima: 110 años).';
+              isValid = false;
+            }
+        }
+        if (!sexo) {
+            document.getElementById('sexo-error').textContent = 'El sexo es obligatorio.';
+            isValid = false;
+        }
+        if (!calle) {
+            document.getElementById('calle-error').textContent = 'La calle es obligatoria.';
+            isValid = false;
+        }
+        if (!puerta) {
+            document.getElementById('num_puer-error').textContent = 'El número de puerta es obligatorio.';
+            isValid = false;
+        } else if (isNaN(puerta) || parseInt(puerta) <= 0) {
+            document.getElementById('num_puer-error').textContent = 'El número de puerta debe ser un valor numérico positivo.';
+            isValid = false;
+        }
+        if (!localidad) {
+            document.getElementById('localidad-error').textContent = 'La localidad es obligatoria.';
+            isValid = false;
+        }
+        if (!email) {
+            document.getElementById('email-error').textContent = 'El correo electrónico es obligatorio.';
+            isValid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            document.getElementById('email-error').textContent = 'El correo ingresado no tiene un formato válido.';
+            isValid = false;
+        }
+        if (!telefonoInput) {
+            document.getElementById('telefono-error').textContent = 'El teléfono es obligatorio.';
+            isValid = false;
+        } else if (telefonoInput.replace(/\D/g, '').length < 7) {
+            document.getElementById('telefono-error').textContent = 'El teléfono debe tener al menos 7 dígitos.';
+            isValid = false;
+        }
+        
+        let passwordErrors = [];
+        if (!password) {
+            passwordErrors.push('La contraseña es obligatoria.');
+        } else {
+            if (password.length < 8) {
+                passwordErrors.push('Debe tener al menos 8 caracteres.');
+            }
+            if (!/[0-9]/.test(password)) {
+                passwordErrors.push('Debe incluir un número.');
+            }
+            if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                passwordErrors.push('Debe incluir un carácter especial.');
+            }
+        }
+        if (passwordErrors.length > 0) {
+            document.getElementById('password-error').textContent = passwordErrors.join(' ');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            return;
+        }
+
+      document.getElementById('form_tutor').style.display = 'none';
+      document.getElementById('verificacion_2fa').style.display = 'block';
+
+
+        const data = {
+          CI: cedula,
+          Nombre: nombre,
+          Apellido: apellido,
+          Fec_Nac: fechaNacimiento,
+          sexo: sexo,
+          Calle: calle,
+          puerta: puerta,
+          localidad: localidad,
+          email: email,
+          Telefono: telefonoInput,
+          nacionalidad: nacionalidad,
+        };
+
+        try {
+          const response = await fetch('http://localhost:8000/api/tutor/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+          }
+          await response.json();
+
+    
+          const authData = {
+            tutorci: cedula,
+            password: password,
+          };
+          const authResponse = await fetch('http://localhost:8000/api/autenticacion/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(authData),
+          });
+          if (!authResponse.ok) {
+            const errorData = await authResponse.json();
+            throw new Error(errorData.message || `HTTP error! status: ${authResponse.status}`);
+          }
+          alert('Autenticación registrada con éxito. Verifica tu correo para el siguiente paso.');
+          document.getElementById('form_tutor').style.display = 'none';
+          document.getElementById('verificacion_2fa').style.display = 'block';
+        } catch (err) {
+          console.error('Detalle del error:', err);
+          
+        }
+      });
+
+      document.getElementById('verificar_2fa').addEventListener('click', async function () {
+        const email = document.getElementById('email').value.trim();
+        const codigo = document.getElementById('codigo_2fa').value.trim();
+        if (!codigo) {
+          alert('Por favor, ingrese el código de verificación.');
+          return;
+        }
+        if (!email) {
+          alert('No se pudo obtener el email para la verificación. Por favor, recargue la página e intente de nuevo.');
+          return;
+        }
+        try {
+          const response = await fetch('http://localhost:8000/api/tutor/verify/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, codigo: codigo }),
+          });
+          if (!response.ok) {
+            const errorData = await response.json();
+            alert(
+              'Error en la verificación: ' +
+                (errorData.detail || errorData.message || 'Código incorrecto o expirado.')
+            );
+            return;
+          }
+          alert('Cuenta verificada correctamente.');
+          window.location.href = 'index.html';
+        } catch (err) {
+          console.error('Error de verificación:', err);
+          alert('Error de red al verificar el código. Verifique la consola.');
+        }
+      });
+      const scrollTopBtn = document.getElementById("scrollTopBtn");
+      if (scrollTopBtn) {
+        window.addEventListener("scroll", function() {
+          if (window.scrollY > 300) {
+            scrollTopBtn.classList.add("visible");
+          } else {
+            scrollTopBtn.classList.remove("visible");
+          }
+        });
+        scrollTopBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+    });
+  </script>
+</body>

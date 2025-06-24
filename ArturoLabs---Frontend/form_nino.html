@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Alta Niño - Portal MSP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(to bottom, #EAF6FB 0%, #FFFFFF 100%);
+      color: #333;
+      font-size: 16px;
+    }
+
+    .header-portal {
+      background-color: #047B97;
+      color: white;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1000;
+    }
+    .header-left-section { display: flex; align-items: center; }
+    .header-left-section .logo-msp {
+      height: 70px;
+      margin-right: 12px;
+    }
+    .header-left-section .site-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95em;
+      line-height: 1.2;
+      margin: 0;
+      text-align: left;
+    }
+    .header-right-section { display: flex; align-items: center; position: relative; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      z-index: 1100;
+    }
+    .hamburger .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    .main-nav-links { display: flex; gap: 15px; }
+    .main-nav-links ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 15px;}
+    .main-nav-links ul li a {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      font-size: 0.95em;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .main-nav-links ul li a:hover { background-color: rgba(255,255,255,0.15); }
+
+    .user-menu { position: relative; margin-left: 25px; }
+    .user-icon {
+      background-color: white;
+      border: 1px solid #047B97;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1em;
+      color: #047B97;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 55px;
+      background-color: #ffffff;
+      min-width: 240px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      overflow: hidden;
+      z-index: 1000;
+      border: 1px solid #e0e0e0;
+    }
+    .dropdown-header {
+      background-color: #047B97;
+      color: white;
+      padding: 12px 18px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .dropdown-header h4 {
+      margin: 0 0 3px 0;
+      font-size: 1.05em;
+      font-weight: 600;
+    }
+    .dropdown-header p {
+      margin: 0;
+      font-size: 0.85em;
+      opacity: 0.9;
+    }
+    .dropdown-body {
+      padding: 8px 0;
+      font-size: 0.9em;
+      color: #333;
+      list-style: none; /* Added for ul */
+      padding: 0; /* Added for ul */
+    }
+    .dropdown-body .child {
+      padding: 10px 18px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .dropdown-body .child:last-child {
+      border-bottom: none;
+    }
+    .dropdown-body .child strong {
+      display: block;
+      font-weight: 600;
+      color: #047B97;
+      margin-bottom: 3px;
+    }
+    .dropdown-body .child span {
+      font-size: 0.9em;
+      color: #555;
+    }
+    #verTodosBtn {
+      display: block;
+      text-align: center;
+      color: #047B97;
+      font-weight: bold;
+      margin-top: 10px;
+      text-decoration: underline;
+      padding: 8px 18px;
+      font-size: 0.9em;
+      font-family: 'Montserrat', sans-serif;
+    }
+    #verTodosBtn:hover { background-color: #f5f5f5; }
+    .dropdown-actions a {
+      display: block;
+      padding: 10px 18px;
+      text-decoration: none;
+      color: #047B97;
+      font-weight: 600;
+      border-top: 1px solid #f0f0f0;
+      font-size: 0.9em;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .dropdown-actions a:hover { background-color: #f5f5f5; }
+
+    form#form_nino {
+      background-color: #ffffff;
+      padding: 40px 50px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: 40px auto;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #003865;
+    }
+
+    form h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #003865;
+      margin-bottom: 35px;
+      border-bottom: 2px solid #7fbcd2;
+      padding-bottom: 12px;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #003865;
+      font-size: 15px;
+    }
+
+    .field input[type="text"],
+    .field input[type="date"],
+    .field select {
+      width: 100%;
+      padding: 12px;
+      font-size: 15px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #ffffff;
+      color: #003865;
+      box-sizing: border-box;
+    }
+
+    form button[type="submit"] {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #047B97;
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      width: 100%;
+      margin-top: 25px;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: block;
+    }
+
+    form button[type="submit"]:hover {
+      background-color: #036a84;
+    }
+
+    .error-text {
+        color: #D8000C;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 14px;
+        margin-top: 6px;
+        min-height: 1em;
+    }
+
+    .page-footer {
+      background-color: #1e8197;
+      padding: 40px 20px 20px 20px;
+      color: white;
+      font-size: 15px;
+      border-top: 1px solid #ffffff;
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      gap: 30px;
+      margin-top: 40px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .footer-columns-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 100%;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      padding: 0 15px;
+    }
+    
+    .footer-column:not(:last-of-type) {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-column h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .footer-column .footer-main-heading {
+        font-size: 1.4em;
+        margin-bottom: 25px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    .footer-column ul li a {
+      color: white;
+      font-size: 1em;
+      transition: color 0.2s ease, transform 0.2s ease;
+      text-decoration: none; /* Added for specificity */
+    }
+    .footer-column ul li a:hover {
+      color: #ffc107;
+      transform: translateX(4px);
+      text-decoration: none;
+    }
+    .contact-info p {
+      margin-bottom: 8px;
+      font-size: 1em;
+    }
+    .contact-info a {
+      color: white;
+      text-decoration: underline;
+    }
+    .contact-info a:hover {
+      text-decoration: none;
+    }
+    .newsletter-section {
+      margin-top: 20px;
+    }
+    .newsletter-section label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+    .newsletter-input-group {
+      display: flex;
+      gap: 10px;
+    }
+    .newsletter-input {
+      flex-grow: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .newsletter-button {
+      background-color: #ffc107;
+      color: #0d3b61;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+    .newsletter-button:hover {
+      background-color: #e0a800;
+    }
+
+    .footer-bottom {
+      width: 100%;
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .social-icons-bottom {
+      display: flex;
+      gap: 20px;
+    }
+    .social-icons-bottom a {
+      font-size: 24px;
+      transition: transform 0.2s ease;
+      text-decoration: none; /* Added for specificity */
+      color: white; /* Added for specificity */
+    }
+    .social-icons-bottom a:hover {
+        transform: scale(1.15);
+    }
+    .social-icons-bottom img {
+      height: 24px;
+      width: 24px;
+    }
+    .footer-links-bottom {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-links-bottom a {
+      font-size: 0.95em;
+      text-decoration: none; /* Added for specificity */
+      color: white; /* Added for specificity */
+    }
+    .footer-links-bottom a:hover {
+        text-decoration: underline; /* Retain underline on hover as in perfil_tutor.html where it applies to specific links */
+    }
+    .footer-logo-gub {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-logo-gub img {
+      height: 24px;
+    }
+    .footer-logo-gub span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2em;
+    }
+    
+    .scroll-top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #047B97;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .scroll-top-button:hover {
+      background-color: #005f79;
+    }
+    .scroll-top-button.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media screen and (max-width: 992px) {
+      .header-portal { flex-direction: column; align-items: flex-start; padding: 15px 20px; }
+      .header-left-section { margin-bottom: 15px; width: 100%; text-align: left; }
+      .header-left-section .site-name { font-size: 1.1em; text-align: left; }
+      .header-right-section { width: 100%; flex-direction: column; align-items: flex-end; }
+
+      .main-nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 80px;
+      }
+
+      .main-nav-links.responsive {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        right: 80px;
+        width: 260px;
+        flex-direction: column;
+        background-color: #047B97;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+        padding: 10px 0;
+        z-index: 1000;
+      }
+      .main-nav-links.responsive ul { flex-direction: column; gap: 0; }
+      .main-nav-links.responsive ul li a {
+        padding: 12px 20px;
+        font-size: 1em;
+        text-align: left;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        color: #ffffff;
+      }
+      .main-nav-links.responsive ul li:last-child a {
+        border-bottom: none;
+      }
+      .main-nav-links.responsive ul li a:hover {
+        background-color: rgba(255,255,255,0.2);
+      }
+
+      form#form_nino {
+        padding: 30px 25px;
+        margin: 20px auto;
+      }
+      form h2 {
+        font-size: 22px;
+        margin-bottom: 25px;
+      }
+        .page-footer {
+            align-items: center;
+            text-align: center;
+        }
+        .footer-columns-container {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .footer-column {
+            width: 100%;
+            min-width: unset;
+            padding: 0;
+        }
+        .footer-column:not(:last-of-type) {
+            border-right: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+         .footer-column:last-of-type {
+            border-bottom: none;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+      .header-left-section { align-items: center; }
+      .header-left-section .site-name { font-size: 1em; text-align: center; }
+      .main-nav-links a { display: block; width: calc(100% - 20px); text-align: center; }
+
+      .hamburger {
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 80px;
+      }
+      .main-nav-links.responsive {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        right: 80px;
+        width: 260px;
+        flex-direction: column;
+        background-color: #047B97;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+        padding: 10px 0;
+        z-index: 1000;
+      }
+      .main-nav-links.responsive a {
+        padding: 12px 15px;
+        color: #ffffff;
+      }
+
+      body { font-size: 14px; }
+      form#form_nino {
+        padding: 25px 15px;
+      }
+      form h2 {
+        font-size: 20px;
+      }
+      .field label { font-size: 14px; }
+      .field input[type="text"],
+      .field input[type="date"],
+      .field select,
+      form button[type="submit"] {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .footer-links-bottom { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header-portal">
+    <div class="header-left-section">
+      <img alt="Escudo Nacional de Uruguay" class="logo-msp" src="escudonacional.png"/>
+      <h1 class="site-name">Ministerio<br/>de Salud Pública</h1>
+    </div>
+    <div class="header-right-section">
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menú móvil">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <nav class="main-nav-links" id="mainMenu">
+        <ul>
+          <li><a href="inicio_portal_sin_login.html">Inicio</a></li>
+          <li><a href="perfil_tutor.html">Niños a cargo</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-menu">
+        <button class="user-icon" id="userIcon" title="Menú de usuario">UI</button>
+        <div class="dropdown-content" id="userDropdown">
+          <div class="dropdown-header">
+            
+          </div>
+          <ul class="dropdown-body" style="color:#047B97;">
+            
+          </ul>
+          <div class="dropdown-actions">
+            <a href="form_tutor.html" style="font-weight: bold; color: #047B97; text-decoration: none;">➕ Agregar otro tutor</a>
+            <a href="form_nino.html" style="font-weight: bold; color: #047B97; text-decoration: none;">➕ Agregar niño</a>
+            <a href="perfil_tutor.html">Ver perfil completo</a>
+            <a href="#" id="cerrarSesionBtn">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <form id="form_nino" novalidate>
+    <h2>Alta de Niño</h2>
+    <div class="field">
+      <label for="nombre">Nombres:</label>
+      <input type="text" id="nombre" name="nombre" required>
+      <div class="error-text" id="nombre-error"></div>
+    </div>
+    <div class="field">
+      <label for="apellido">Apellidos:</label>
+      <input type="text" id="apellido" name="apellido" required>
+      <div class="error-text" id="apellido-error"></div>
+    </div>
+    <div class="field">
+      <label for="sexo">Sexo:</label>
+      <select id="sexo" name="sexo" required>
+        <option value="" disabled selected>-- Seleccione Sexo --</option>
+        <option value="F">Femenino</option>
+        <option value="M">Masculino</option>
+        <option value="O">Otro</option>
+      </select>
+      <div class="error-text" id="sexo-error"></div>
+    </div>
+    <div class="field">
+      <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+      <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+      <div class="error-text" id="fecha_nacimiento-error"></div>
+    </div>
+    <div class="field">
+      <label for="cedula">Cédula de identidad:</label>
+      <input type="text" id="cedula" name="cedula" required>
+      <div class="error-text" id="cedula-error"></div>
+    </div>
+    <div class="field">
+      <label for="nacionalidad">Nacionalidad:</label>
+      <input type="text" id="nacionalidad" name="nacionalidad" required>
+      <div class="error-text" id="nacionalidad-error"></div>
+    </div>
+    <div class="field">
+      <label for="tutor_asociado">Cédula del tutor:</label>
+      <input type="text" id="tutor_asociado" name="tutor_asociado" placeholder="CI del tutor asociado" required>
+      <div class="error-text" id="tutor_asociado-error"></div>
+    </div>
+    <div class="field">
+      <label for="tutor_secundario">Cédula del segundo tutor (opcional):</label>
+      <input type="text" id="tutor_secundario" name="tutor_secundario" placeholder="CI del segundo tutor (opcional)">
+      <div class="error-text" id="tutor_secundario-error"></div>
+    </div>
+    <button type="submit">Registrar Niño</button>
+  </form>
+
+  <footer class="page-footer">
+    <div class="footer-columns-container">
+        <div class="footer-column">
+          <h3 class="footer-main-heading">Ministerio de Salud Pública</h3>
+          <div class="contact-info">
+            <p>Dirección: 18 de julio 1892</p>
+            <p>Teléfono: 1934</p>
+            <p><a href="#">Contacto</a></p>
+            <p>Horario de atención: Lunes a viernes de 09:00 a 15:00</p>
+          </div>
+          <div class="newsletter-section">
+            <label for="email-newsletter">Suscribirse al boletín:</label>
+            <div class="newsletter-input-group">
+              <input type="email" id="email-newsletter" class="newsletter-input" placeholder="Correo electrónico">
+              <button type="submit" class="newsletter-button">Suscribirse</button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="footer-column">
+          <h3>Teléfonos de interés</h3>
+          <ul>
+            <li><a href="#">Atención a Usuario de ASSE: 2486 5008 ints. 2425 o 2426</a></li>
+            <li><a href="#">Línea Azul (INAU): 0800 5050</a></li>
+            <li><a href="#">Centro de Información y Asesoramiento Toxicolgico: 1722</a></li>
+            <li><a href="#">MIDES: 0800 7263</a></li>
+            <li><a href="#">Lactancia: 1934 interno 4250</a></li>
+          </ul>
+        </div>
+    
+        <div class="footer-column">
+          <h3>Enlaces de interés</h3>
+          <ul>
+            <li><a href="#">Guía de Primeros Auxilios Digital</a></li>
+            <li><a href="#">Guía de Alimentación en la Primera Infancia</a>
+            <li><a href="#">Directorio de Centros de Salud Afiliados</a></li>
+            <li><a href="#">Portal de Denuncias a Instituciones de Salud</a></li>
+            <li><a href="#">Portal de Atención Terapéutica Pediátrica</a></li>
+            <li><a href="#">Noticias y Alertas Sanitarias</a></li>
+          </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="social-icons-bottom">
+        <a href="https://www.facebook.com/MSPUruguay" target="_blank" aria-label="Facebook del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+        <a href="https://wa.me/MESSAGE_NUMBER" target="_blank" aria-label="WhatsApp del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
+        <a href="https://www.youtube.com/watch?v=rtLkYgFm17w" target="_blank" aria-label="YouTube del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"></a>
+        <a href="https://www.instagram.com/msp_uruguay/" target="_blank" aria-label="Instagram del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"></a>
+      </div>
+      <div class="footer-links-bottom">
+        <a href="https://www.gub.uy/instituciones/ministerio-salud-publica/sitio-oficial" target="_blank">Sitio oficial de la República Oriental del Uruguay</a>
+        <a href="https://www.gub.uy/mapa-sitio" target="_blank">Mapa del sitio</a>
+        <a href="https://www.gub.uy/declaracion-accesibilidad" target="_blank">Declaración de accesibilidad</a>
+        <a href="https://www.gub.uy/terminos-uso" target="_blank">Términos de uso</a>
+        <a href="https://www.gub.uy/politica-privacidad" target="_blank">Política de Privacidad</a>
+      </div>
+      <div class="footer-logo-gub">
+        <img src="gubuy.png" alt="Logo Uruguay.uy" style="height: 24px;">
+        <span>Uruguay.uy</span>
+      </div>
+      <div class="footer-logo-gub" style="margin-top: 10px;">
+        <img src="uruguaynat.png" alt="gub.uy" style="height: 24px;">
+        <span>gub.uy</span>
+      </div>
+    </div>
+
+    <a href="#" id="scrollTopBtn" class="scroll-top-button" title="Volver arriba">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+          <path d="M12 4l-8 8h5v6h6v-6h5z" />
+        </svg>
+    </a>
+  </footer>
+
+  <script type="module">
+    import { cargarHijos, cargarTutor } from './javascript/auth.js';
+
+    document.addEventListener("DOMContentLoaded", () => {
+      cargarHijos();
+      cargarTutor();
+    });
+
+    import { logout } from './javascript/auth.js';
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const cerrarSesionBtn = document.getElementById("cerrarSesionBtn");
+      if (cerrarSesionBtn) {
+        cerrarSesionBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          logout();
+          window.location.href = "index.html"; // redirige al inicio
+        });
+      }
+    });
+
+  </script>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const icon = document.getElementById("userIcon");
+      const dropdown = document.getElementById("userDropdown");
+
+      if (icon && dropdown) {
+        icon.addEventListener("click", function (event) {
+          event.stopPropagation();
+          dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        });
+
+        document.addEventListener("click", function (event) {
+          if (dropdown && !event.target.closest(".user-menu")) {
+            dropdown.style.display = "none";
+          }
+        });
+      }
+
+      const verBtn = document.getElementById("verTodosBtn");
+      const childrenInDropdown = dropdown ? Array.from(dropdown.querySelectorAll(".dropdown-body .child")) : [];
+      let expanded = false;
+
+      function applyBorders() {
+        if (!dropdown) return;
+        childrenInDropdown.forEach((el, index) => {
+          el.style.borderBottom = "1px solid #eee";
+        });
+        if (expanded) {
+          if (childrenInDropdown.length > 0) {
+            childrenInDropdown[childrenInDropdown.length - 1].style.borderBottom = "none";
+          }
+        } else {
+          if (childrenInDropdown.length > 3) {
+            childrenInDropdown[2].style.borderBottom = "none";
+          } else if (childrenInDropdown.length > 0) {
+            childrenInDropdown[childrenInDropdown.length - 1].style.borderBottom = "none";
+          }
+        }
+      }
+
+      function colapsar() {
+        if (!dropdown) return;
+        childrenInDropdown.forEach((el, i) => {
+          el.style.display = i < 3 ? "block" : "none";
+        });
+        if (verBtn) verBtn.textContent = "Ver todos";
+        expanded = false;
+        applyBorders();
+      }
+
+      function expandir() {
+        if (!dropdown) return;
+        childrenInDropdown.forEach(el => {
+          el.style.display = "block";
+        });
+        if (verBtn) verBtn.textContent = "Ver menos";
+        expanded = true;
+        applyBorders();
+      }
+
+      if (verBtn) {
+        if (childrenInDropdown.length > 3) {
+          colapsar();
+          verBtn.style.display = "block";
+        } else {
+          verBtn.style.display = "none";
+          applyBorders();
+          expanded = false;
+        }
+
+        verBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (verBtn.textContent === "Ver todos") {
+            expandir();
+          } else {
+            colapsar();
+          }
+        });
+      }
+
+      const hamburgerBtn = document.getElementById("hamburgerBtn");
+      const mainMenu = document.getElementById("mainMenu");
+      if (hamburgerBtn && mainMenu) {
+        hamburgerBtn.addEventListener("click", function (event) {
+          event.stopPropagation();
+          mainMenu.classList.toggle("responsive");
+        });
+        document.addEventListener("click", function (event) {
+          if (
+            mainMenu.classList.contains("responsive") &&
+            !event.target.closest(".header-right-section")
+          ) {
+            mainMenu.classList.remove("responsive");
+          }
+        });
+      }
+
+      document.getElementById("form_nino").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        
+        document.querySelectorAll('.error-text').forEach(el => el.textContent = '');
+
+        const nombre = document.getElementById("nombre").value.trim();
+        const apellido = document.getElementById("apellido").value.trim();
+        const sexo = document.getElementById("sexo").value.trim();
+        const fechaNacimiento = document.getElementById("fecha_nacimiento").value;
+        const cedulaInput = document.getElementById("cedula").value.trim();
+        const nacionalidad = document.getElementById("nacionalidad").value.trim();
+        const tutorInput = document.getElementById("tutor_asociado").value.trim();
+        const tutorSecundarioInput = document.getElementById("tutor_secundario").value.trim() || null;
+        let isValid = true;
+
+        if (!nombre) {
+            document.getElementById('nombre-error').textContent = 'El nombre es obligatorio.';
+            isValid = false;
+        }
+        if (!apellido) {
+            document.getElementById('apellido-error').textContent = 'El apellido es obligatorio.';
+            isValid = false;
+        }
+        if (!sexo) {
+            document.getElementById('sexo-error').textContent = 'Debe seleccionar el sexo.';
+            isValid = false;
+        }
+        if (!fechaNacimiento) {
+            document.getElementById('fecha_nacimiento-error').textContent = 'La fecha de nacimiento es obligatoria.';
+            isValid = false;
+        } else {
+            const hoy = new Date();
+            const nacimiento = new Date(fechaNacimiento);
+            let edad = hoy.getFullYear() - nacimiento.getFullYear();
+            const mesHoy = hoy.getMonth();
+            const mesNac = nacimiento.getMonth();
+            const diaHoy = hoy.getDate();
+            const diaNac = nacimiento.getDate();
+            if (mesHoy < mesNac || (mesHoy === mesNac && diaHoy < diaNac)) {
+              edad--;
+            }
+            if (isNaN(nacimiento.getTime()) || nacimiento > hoy || edad > 12) {
+              document.getElementById('fecha_nacimiento-error').textContent = 'La fecha de nacimiento no es válida (edad máxima: 12 años).';
+              isValid = false;
+            }
+        }
+        
+        const cedula = cedulaInput.replace(/\D/g, '');
+        if (!cedulaInput) {
+            document.getElementById('cedula-error').textContent = 'La cédula de identidad es obligatoria.';
+            isValid = false;
+        } else if (cedula.length !== 8) {
+            document.getElementById('cedula-error').textContent = 'La cédula debe contener exactamente 8 dígitos numéricos.';
+            isValid = false;
+        }
+
+        if (!nacionalidad) {
+            document.getElementById('nacionalidad-error').textContent = 'La nacionalidad es obligatoria.';
+            isValid = false;
+        }
+
+        const tutor = tutorInput.replace(/\D/g, '');
+        if (!tutorInput) {
+            document.getElementById('tutor_asociado-error').textContent = 'La cédula del tutor es obligatoria.';
+            isValid = false;
+        } else if (tutor.length !== 8) {
+            document.getElementById('tutor_asociado-error').textContent = 'La cédula del tutor debe contener exactamente 8 dígitos numéricos.';
+            isValid = false;
+        }
+
+        if (tutorSecundarioInput) {
+          const tutor2 = tutorSecundarioInput.replace(/\D/g, '');
+          if (tutor2.length !== 8) {
+            document.getElementById('tutor_secundario-error').textContent = 'La cédula del segundo tutor debe contener exactamente 8 dígitos numéricos.';
+            isValid = false;
+          }
+        }
+
+        if (!isValid) {
+            return;
+        }
+
+        const data = {
+          nombre: nombre,
+          apellido: apellido,
+          sexo: sexo,
+          fec_nac: fechaNacimiento,
+          ci: parseInt(cedula),
+          nacionalidad: nacionalidad,
+          tutorci: parseInt(tutor),
+          tutordosci: tutorSecundarioInput ? parseInt(tutorSecundarioInput.replace(/\D/g, '')) : null
+        };
+
+        try {
+          const response = await fetch("http://localhost:8000/api/nino/", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+          });
+          if (response.ok) {
+            alert("Niño registrado con éxito");
+            document.getElementById('form_nino').reset();
+          } else {
+            const errorData = await response.json();
+            if (errorData.tutor) {
+              alert("Error: La cédula del tutor no está registrada en el sistema.");
+            } else if (errorData.ci) {
+              alert("Error: La cédula del niño ya está registrada.");
+            } else {
+              const erroresMostrar = Object.entries(errorData).map(
+                ([campo, mensajes]) => `${campo}: ${Array.isArray(mensajes) ? mensajes.join(", ") : mensajes}`
+              ).join("\n");
+              alert("Error al registrar el niño:\n" + (erroresMostrar || "Respuesta no esperada del servidor."));
+            }
+          }
+        } catch (error) {
+          alert("Error al conectar con el servidor o procesar la solicitud. Verifique que la cédula del tutor esté registrada o intente más tarde.");
+        }
+      });
+      const scrollTopBtn = document.getElementById("scrollTopBtn");
+      if (scrollTopBtn) {
+        window.addEventListener("scroll", function() {
+          if (window.scrollY > 300) {
+            scrollTopBtn.classList.add("visible");
+          } else {
+            scrollTopBtn.classList.remove("visible");
+          }
+        });
+        scrollTopBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

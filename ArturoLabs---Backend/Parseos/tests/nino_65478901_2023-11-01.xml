@@ -1,0 +1,13 @@
+<Nino>
+    <id>65478901</id>
+    <nombres>Isabella</nombres>
+    <apellidos>Fernández</apellidos>
+    <etnia>Blanca</etnia>
+    <sexo>F</sexo>
+    <fechaNacimiento>2022-09-29</fechaNacimiento>
+    <nacionalidad>Uruguaya</nacionalidad>
+    <domicilio>Montevideo</domicilio>
+    <telefono>35678921</telefono>
+    <servicioSalud>ASSE</servicioSalud>
+    <emergenciaMovil>31248795</emergenciaMovil>
+</Nino>

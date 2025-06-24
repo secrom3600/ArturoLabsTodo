@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Portal del Tutor - MSP</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f6f9fc;
+      color: #333;
+    }
+
+    .header-portal {
+      background-color: #047B97;
+      color: white;
+      padding: 12px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .header-left-section { display: flex; align-items: center; }
+    .header-left-section .logo-msp {
+      height: 70px;
+      margin-right: 12px;
+    }
+    .header-left-section .site-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95em;
+      line-height: 1.2;
+      margin: 0;
+      text-align: left;
+    }
+    .header-right-section { display: flex; align-items: center; }
+
+    .pdf-cover-emulation-container {
+      display: flex;
+      justify-content: center;
+      padding: 40px 30px;
+      box-sizing: border-box;
+    }
+
+    .pdf-cover-content {
+      background-color: #047B97;
+      color: #FFFFFF;
+      width: 100%;
+      max-width: 800px;
+      min-height: 75vh;
+      padding: 50px 60px 0px 60px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    .pdf-main-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .title-section {
+      flex-basis: 55%;
+      text-align: left;
+    }
+    .cover-main-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2.9em;
+      color: #FFFFFF;
+      line-height: 1.15;
+      margin: 0 0 15px 0;
+    }
+    .cover-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.3em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .identification-document-info {
+      flex-basis: 40%;
+      text-align: left;
+      padding-top: 20px;
+      font-family: 'Montserrat', sans-serif;
+      color: #FFFFFF;
+    }
+    .id-doc-main {
+      font-weight: 700;
+      font-size: 0.95em;
+      text-transform: uppercase;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.5px;
+    }
+    .id-doc-secondary {
+      font-weight: 400;
+      font-size: 0.95em;
+      text-transform: uppercase;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.5px;
+    }
+    .legal-references {
+      margin-top: 20px;
+    }
+    .legal-references p {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 0.85em;
+      color: #FFFFFF;
+      opacity: 0.9;
+      margin: 3px 0;
+    }
+
+    .bottom-logo-area {
+        background-color: #FFFFFF;
+        padding: 20px 0;
+        margin-left: -60px;
+        margin-right: -60px;
+        margin-bottom: -0px;
+        text-align: right;
+    }
+    .imo-logo-container {
+        display: inline-block;
+        padding-right: 60px;
+    }
+    .imo-logo-container img {
+      height: 45px;
+      display: block;
+    }
+
+
+    @media screen and (max-width: 992px) {
+        .card-dual-column {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: center;
+          gap: 40px;
+        }
+        .header-portal { flex-direction: column; align-items: flex-start; padding: 15px 20px; }
+        .header-left-section { margin-bottom: 15px; width: 100%; text-align: left; }
+        .header-left-section .site-name { font-size: 1.1em; text-align: left; }
+        .header-right-section { width: 100%; flex-direction: column; align-items: center; }
+
+        .pdf-cover-content { padding: 40px 30px 0px 30px; min-height: auto; }
+        .pdf-main-area { flex-direction: column; align-items: center; text-align: center; }
+        .title-section { margin-bottom: 30px; width: 100%; text-align: center;}
+        .cover-main-title { font-size: 2em; }
+        .identification-document-info { width: 100%; text-align: center; padding-top: 0; margin-bottom: 20px; }
+        .bottom-logo-area { margin-left: -30px; margin-right: -30px; padding: 15px 0; text-align: center;}
+        .imo-logo-container { padding-right: 0; }
+    }
+
+    @media screen and (max-width: 480px) {
+        .header-left-section { align-items: center; }
+        .header-left-section .site-name { font-size: 1em; text-align: center; }
+        .cover-main-title { font-size: 1.8em; }
+        .cover-subtitle { font-size: 1em; }
+        .id-doc-main, .id-doc-secondary { font-size: 0.9em;}
+        .legal-references p { font-size: 0.8em; }
+        .pdf-cover-content { padding: 30px 15px 0px 15px; }
+        .bottom-logo-area { margin-left: -15px; margin-right: -15px; }
+        .imo-logo-container img { height: 35px; }
+    }
+
+.cover-description {
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  color: #ffffff;
+  line-height: 1.6;
+  opacity: 0.95;
+  max-width: 500px;
+}
+
+.card-dual-column {
+  display: flex;
+  align-items: stretch;
+  gap: 40px;
+  justify-content: center;
+  padding-bottom: 60px;
+}
+
+.pdf-cover-content,
+.container {
+  flex: 1;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-dual-column {
+  display: flex;
+  align-items: stretch;
+  gap: 40px;
+  justify-content: center;
+  padding-bottom: 60px;
+  min-height: 750px;
+}
+
+.pdf-cover-content,
+.container {
+  flex: 1;
+  height: 100%;
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, #FAF4F0 0%, #FFFFFF 100%);
+}
+
+.pdf-cover-content,
+.container {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+}
+
+body {
+  background: linear-gradient(to bottom, #EAF6FB 0%, #FFFFFF 100%);
+}
+
+.pdf-cover-content,
+.container {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.10), inset 0 1px 2px rgba(255,255,255,0.4);
+  border: 1px solid #E4D7CE;
+  border-radius: 12px;
+  padding: 60px;
+}
+
+.cover-main-title {
+  margin-bottom: 25px;
+}
+
+.cover-subtitle {
+  margin-bottom: 15px;
+}
+
+.cover-description {
+  margin-bottom: 30px;
+}
+
+form#form_login {
+  margin-top: 10px;
+}
+
+    :root {
+      --primary-color: #047B97;
+      --secondary-color: #003865;
+      --text-color: #333;
+      --montserrat-font: 'Montserrat', sans-serif;
+      --segoe-font: 'Segoe UI', Arial, sans-serif;
+    }
+    .page-footer {
+      background-color: #1e8197;
+      padding: 40px 20px 20px 20px;
+      color: white;
+      font-size: 15px;
+      border-top: 1px solid #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: 40px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .footer-columns-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 100%;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      padding: 0 15px;
+    }
+
+    .footer-column:not(:last-of-type) {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-column h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .footer-column .footer-main-heading {
+        font-size: 1.4em;
+        margin-bottom: 25px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    .footer-column ul li a {
+      color: white;
+      font-size: 1em;
+      transition: color 0.2s ease, transform 0.2s ease;
+      text-decoration: none;
+    }
+    .footer-column ul li a:hover {
+      color: #ffc107;
+      transform: translateX(4px);
+      text-decoration: none;
+    }
+    .contact-info p {
+      margin-bottom: 8px;
+      font-size: 1em;
+    }
+    .contact-info a {
+      color: white;
+      text-decoration: underline;
+    }
+    .contact-info a:hover {
+      text-decoration: none;
+    }
+    .newsletter-section {
+      margin-top: 20px;
+    }
+    .newsletter-section label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+    .newsletter-input-group {
+      display: flex;
+      gap: 10px;
+    }
+    .newsletter-input {
+      flex-grow: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .newsletter-button {
+      background-color: #ffc107;
+      color: #0d3b61;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+    .newsletter-button:hover {
+      background-color: #e0a800;
+    }
+
+    .footer-bottom {
+      width: 100%;
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .social-icons-bottom {
+      display: flex;
+      gap: 20px;
+    }
+    .social-icons-bottom a {
+      font-size: 24px;
+      transition: transform 0.2s ease;
+    }
+    .social-icons-bottom a:hover {
+        transform: scale(1.15);
+    }
+    .social-icons-bottom img {
+      height: 24px;
+      width: 24px;
+    }
+    .footer-links-bottom {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-links-bottom a {
+      font-size: 0.95em;
+      color: white;
+      text-decoration: none;
+    }
+    .footer-links-bottom a:hover {
+      text-decoration: none;
+    }
+    .footer-logo-gub {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-logo-gub img {
+      height: 24px;
+    }
+    .footer-logo-gub span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2em;
+    }
+
+    @media screen and (max-width: 992px) {
+        .page-footer {
+            align-items: center;
+            text-align: center;
+        }
+        .footer-columns-container {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .footer-column {
+            width: 100%;
+            min-width: unset;
+            padding: 0;
+        }
+        .footer-column:not(:last-of-type) {
+            border-right: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+         .footer-column:last-of-type {
+            border-bottom: none;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .newsletter-input-group { flex-direction: column; gap: 10px; }
+        .footer-links-bottom { flex-direction: column; gap: 10px; }
+    }
+
+    /* Styles from perfil_tutor.html for footer and scroll-to-top */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    body {
+      color: #333;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .page-footer {
+      background-color: #1e8197;
+      padding: 40px 20px 20px 20px;
+      color: white;
+      font-size: 15px;
+      border-top: 1px solid #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-top: 40px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .footer-columns-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 100%;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      padding: 0 15px;
+    }
+
+    .footer-column:not(:last-of-type) {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-column h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .footer-column .footer-main-heading {
+        font-size: 1.4em;
+        margin-bottom: 25px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    .footer-column ul li a {
+      color: white;
+      font-size: 1em;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-column ul li a:hover {
+      color: #ffc107;
+      transform: translateX(4px);
+      text-decoration: none;
+    }
+    .contact-info p {
+      margin-bottom: 8px;
+      font-size: 1em;
+    }
+    .contact-info a {
+      color: white;
+      text-decoration: underline;
+    }
+    .contact-info a:hover {
+      text-decoration: none;
+    }
+    .newsletter-section {
+      margin-top: 20px;
+    }
+    .newsletter-section label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+    .newsletter-input-group {
+      display: flex;
+      gap: 10px;
+    }
+    .newsletter-input {
+      flex-grow: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .newsletter-button {
+      background-color: #ffc107;
+      color: #0d3b61;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+    .newsletter-button:hover {
+      background-color: #e0a800;
+    }
+
+    .footer-bottom {
+      width: 100%;
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .social-icons-bottom {
+      display: flex;
+      gap: 20px;
+    }
+    .social-icons-bottom a {
+      font-size: 24px;
+      transition: transform 0.2s ease;
+    }
+    .social-icons-bottom a:hover {
+        transform: scale(1.15);
+    }
+    .social-icons-bottom img {
+      height: 24px;
+      width: 24px;
+    }
+    .footer-links-bottom {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-links-bottom a {
+      font-size: 0.95em;
+    }
+    .footer-logo-gub {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-logo-gub img {
+      height: 24px;
+    }
+    .footer-logo-gub span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2em;
+    }
+
+    .scroll-top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #047B97;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .scroll-top-button:hover {
+      background-color: #005f79;
+    }
+    .scroll-top-button.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media screen and (max-width: 992px) {
+        .page-footer {
+            align-items: center;
+            text-align: center;
+        }
+        .footer-columns-container {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .footer-column {
+            width: 100%;
+            min-width: unset;
+            padding: 0;
+        }
+        .footer-column:not(:last-of-type) {
+            border-right: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+         .footer-column:last-of-type {
+            border-bottom: none;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .newsletter-input-group { flex-direction: column; gap: 10px; }
+        .footer-links-bottom { flex-direction: column; gap: 10px; }
+    }
+</style>
+</head>
+<body>
+<header class="header-portal">
+  <div class="header-left-section">
+    <img alt="Escudo Nacional de Uruguay" class="logo-msp" src="escudonacional.png"/>
+    <h1 class="site-name">Ministerio<br/>de Salud Pública</h1>
+  </div>
+  <div class="header-right-section">
+  </div>
+</header>
+
+<div class="pdf-cover-emulation-container">
+  <div class="card-dual-column">
+
+    <section class="pdf-cover-content" style="max-width: 650px; flex-shrink: 0; min-height: 600px;">
+      <div class="pdf-main-area">
+        <div class="title-section">
+          <h1 class="cover-main-title">Carné de control<br/>pediátrico</h1>
+          <p class="cover-subtitle">DE 0 A 12 AÑOS</p>
+          <p class="cover-description">Este documento contiene la información clínica esencial del niño o niña desde su nacimiento hasta los 12 años. Registra los controles de salud, vacunas, desarrollo físico y neurológico, y es requisito para actividades escolares y recreativas. Su presentación es obligatoria al ingresar a centros educativos.</p>
+        </div>
+        <div class="identification-document-info">
+          <p class="id-doc-main">DOCUMENTO DE IDENTIFICACIÓN</p>
+          <p class="id-doc-secondary">EN LOS SERVICIOS DE SALUD Y ESTABLECIMIENTOS EDUCATIVOS</p>
+          <div class="legal-references">
+            <p>Ley N° 14.852</p>
+            <p>Decreto 542/007</p>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-logo-area">
+        <div class="imo-logo-container">
+          <img alt="Logo IMPO" src="impo.png"/>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" style="max-width: 650px; background-color: white; padding: 50px 60px 40px 60px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); font-family: 'Montserrat', sans-serif; color: #003865; display: flex; flex-direction: column; justify-content: flex-start; box-sizing: border-box; min-height: 600px;">
+      <h2 style="font-size: 28px; font-weight: 700; color: #003865; margin-bottom: 30px; border-bottom: 2px solid #7fbcd2; padding-bottom: 10px; text-align: center;">Iniciar Sesión</h2>
+      <form id="form_login">
+        <div class="field">
+          <label for="ci" style="font-weight: 500; margin-bottom: 5px; display: block; font-size: 15px;">Cédula de Identidad:</label>
+          <input id="ci" maxlength="8" name="ci" placeholder="Ej: 12345678" required="" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #ccc; border-radius: 6px; background-color: #ffffff; margin-bottom: 18px; color: #003865; box-sizing: border-box;" type="text"/>
+        </div>
+        <div class="field">
+          <label for="password" style="font-weight: 500; margin-bottom: 5px; display: block; font-size: 15px;">Contraseña:</label>
+          <input id="password" name="password" placeholder="Tu contraseña" required="" style="width: 100%; padding: 12px; font-size: 15px; border: 1px solid #ccc; border-radius: 6px; background-color: #ffffff; margin-bottom: 18px; color: #003865; box-sizing: border-box;" type="password"/>
+        </div>
+        <button style="background-color: #047B97; color: white; font-weight: 600; font-size: 15px; padding: 12px; border: none; border-radius: 6px; width: 100%; margin-top: 12px; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; justify-content: center; gap: 10px; box-sizing: border-box;" type="submit">Ingresar</button>
+        
+        <p style="text-align: center; font-size: 14px; color: #003865; margin-top: 30px;">
+          ¿Todavía no estás registrado?
+          <a href="form_tutor2v.html" style="color: #003865; text-decoration: underline; font-weight: 600;">Creá tu cuenta como tutor</a>
+        </p>
+      </form>
+    </section>
+  </div>
+</div>
+
+<footer class="page-footer">
+    <div class="footer-columns-container">
+        <div class="footer-column">
+          <h3 class="footer-main-heading">Ministerio de Salud Pública</h3>
+          <div class="contact-info">
+            <p>Dirección: 18 de julio 1892</p>
+            <p>Teléfono: 1934</p>
+            <p><a href="#">Contacto</a></p>
+            <p>Horario de atención: Lunes a viernes de 09:00 a 15:00</p>
+          </div>
+          <div class="newsletter-section">
+            <label for="email-newsletter">Suscribirse al boletín:</label>
+            <div class="newsletter-input-group">
+              <input type="email" id="email-newsletter" class="newsletter-input" placeholder="Correo electrónico">
+              <button type="submit" class="newsletter-button">Suscribirse</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Teléfonos de interés</h3>
+          <ul>
+            <li><a href="#">Atención a Usuario de ASSE: 2486 5008 ints. 2425 o 2426</a></li>
+            <li><a href="#">Línea Azul (INAU): 0800 5050</a></li>
+            <li><a href="#">Centro de Información y Asesoramiento Toxicolgico: 1722</a></li>
+            <li><a href="#">MIDES: 0800 7263</a></li>
+            <li><a href="#">Lactancia: 1934 interno 4250</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Enlaces de interés</h3>
+          <ul>
+            <li><a href="#">Guía de Primeros Auxilios Digital</a></li>
+            <li><a href="#">Guía de Alimentación en la Primera Infancia</a>
+            <li><a href="#">Directorio de Centros de Salud Afiliados</a></li>
+            <li><a href="#">Portal de Denuncias a Instituciones de Salud</a></li>
+            <li><a href="#">Portal de Atención Terapéutica Pediátrica</a></li>
+            <li><a href="#">Noticias y Alertas Sanitarias</a></li>
+          </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="social-icons-bottom">
+        <a href="https://www.facebook.com/MSPUruguay" target="_blank" aria-label="Facebook del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+        <a href="https://wa.me/MESSAGE_NUMBER" target="_blank" aria-label="WhatsApp del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
+        <a href="https://www.youtube.com/watch?v=rtLkYgFm17w" target="_blank" aria-label="YouTube del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube"></a>
+        <a href="https://www.instagram.com/msp_uruguay/" target="_blank" aria-label="Instagram del Ministerio de Salud Pública"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"></a>
+      </div>
+      <div class="footer-links-bottom">
+        <a href="https://www.gub.uy/instituciones/ministerio-salud-publica/sitio-oficial" target="_blank">Sitio oficial de la República Oriental del Uruguay</a>
+        <a href="https://www.gub.uy/mapa-sitio" target="_blank">Mapa del sitio</a>
+        <a href="https://www.gub.uy/declaracion-accesibilidad" target="_blank">Declaración de accesibilidad</a>
+        <a href="https://www.gub.uy/terminos-uso" target="_blank">Términos de uso</a>
+        <a href="https://www.gub.uy/politica-privacidad" target="_blank">Política de Privacidad</a>
+      </div>
+      <div class="footer-logo-gub">
+        <img src="gubuy.png" alt="Logo Uruguay.uy" style="height: 24px;">
+        <span>Uruguay.uy</span>
+      </div>
+      <div class="footer-logo-gub" style="margin-top: 10px;">
+        <img src="uruguaynat.png" alt="gub.uy" style="height: 24px;">
+        <span>gub.uy</span>
+      </div>
+    </div>
+
+    <a href="#" id="scrollTopBtn" class="scroll-top-button" title="Volver arriba">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+          <path d="M12 4l-8 8h5v6h6v-6h5z" />
+        </svg>
+    </a>
+  </footer>
+
+<script type="module">
+  import { login } from "./javascript/auth.js";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("form_login").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const ci = document.getElementById("ci").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      console.log("Intentando login con CI:", ci);
+
+      try {
+        const result = await login(ci, password);
+        console.log("Resultado login:", result);
+
+        if (result.success) {
+          //alert("Inicio de sesión exitoso");
+          window.location.href = "inicio_portal_sin_login.html";
+        } else {
+          alert("Error en el inicio de sesión: " + result.message);
+        }
+      } catch (error) {
+        console.error("Error en la función login:", error);
+        alert("Ocurrió un error inesperado en el inicio de sesión");
+      }
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    if (scrollTopBtn) {
+      window.addEventListener("scroll", function() {
+        if (window.scrollY > 300) {
+          scrollTopBtn.classList.add("visible");
+        } else {
+          scrollTopBtn.classList.remove("visible");
+        }
+      });
+      scrollTopBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+  });
+</script>
+</body>
+</html>
