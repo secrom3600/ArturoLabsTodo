@@ -1116,7 +1116,7 @@
             const errorData = await authResponse.json();
             throw new Error(errorData.message || `HTTP error! status: ${authResponse.status}`);
           }
-          alert('Autenticación registrada con éxito. Verifica tu correo para el siguiente paso.');
+          
           document.getElementById('form_tutor').style.display = 'none';
           document.getElementById('verificacion_2fa').style.display = 'block';
         } catch (err) {
@@ -1129,7 +1129,7 @@
         const email = document.getElementById('email').value.trim();
         const codigo = document.getElementById('codigo_2fa').value.trim();
         if (!codigo) {
-          alert('Por favor, ingrese el código de verificación.');
+          
           return;
         }
         if (!email) {
@@ -1150,7 +1150,7 @@
             );
             return;
           }
-          alert('Cuenta verificada correctamente.');
+          
           window.location.href = 'inicio_portal_sin_login.html';
         } catch (err) {
           console.error('Error de verificación:', err);
